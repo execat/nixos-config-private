@@ -83,4 +83,4 @@
 (dl/window-setup)
 
 "Load our main config file"
-(org-babel-load-file  "~/.local/share/src/nixos-config/shared/config/emacs/config.org")
+(org-babel-load-file  "~/_code/setup/shared/config/emacs/config.org")
