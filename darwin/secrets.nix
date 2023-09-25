@@ -27,7 +27,7 @@ let user = "atm"; in
 
   age.secrets."github-ssh-key" = {
     symlink = true;
-    path = "/Users/${user}/.ssh/id_github";
+    path = "/Users/${user}/.ssh/github";
     file =  "${secrets}/github-ssh-key.age";
     mode = "600";
     owner = "${user}";

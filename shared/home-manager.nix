@@ -269,11 +269,11 @@ let name = "Anuj More";
       ''
       (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
         ''
-          IdentityFile /home/${user}/.ssh/id_github
+          IdentityFile /home/${user}/.ssh/github
         '')
       (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
         ''
-          IdentityFile /Users/${user}/.ssh/id_github
+          IdentityFile /Users/${user}/.ssh/github
         '')
     ];
   };
