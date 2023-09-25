@@ -4,6 +4,7 @@
 
   inputs = {
     nixpkgs = {
+      # This revision: 26th Sept 02:46
       url = "github:nixos/nixpkgs?rev=e42717254714b9d312d1e4f15332952848fac3eb";
     };
     agenix.url = "github:ryantm/agenix";
