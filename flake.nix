@@ -3,7 +3,9 @@
   description = "Starter Configuration for NixOS and MacOS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs?rev=e42717254714b9d312d1e4f15332952848fac3eb";
+    };
     agenix.url = "github:ryantm/agenix";
     home-manager.url = "github:nix-community/home-manager";
     darwin = {
