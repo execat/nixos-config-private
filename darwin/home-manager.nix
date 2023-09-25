@@ -2,11 +2,6 @@
 
 let
   user = "atm";
-  # Define the content of your file as a derivation
-  myEmacsLauncher = pkgs.writeScript "emacs-launcher.command" ''
-    #!/bin/sh
-    emacsclient -c -n &
-  '';
   sharedFiles = import ../shared/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit config pkgs; };
 in
@@ -34,7 +29,6 @@ in
   # $ mas search <app name>
   #
   homebrew.masApps = {
-    "1password" = 1333542190;
     "wireguard" = 1451685025;
   };
 
@@ -47,7 +41,6 @@ in
       home.file = lib.mkMerge [
         sharedFiles
         additionalFiles
-        { "emacs-launcher.command".source = myEmacsLauncher; }
       ];
       home.activation.gpgImportKeys =
         let
@@ -112,10 +105,6 @@ in
     { path = "/Applications/Asana.app/"; }
     { path = "/Applications/Drafts.app/"; }
     { path = "/System/Applications/Home.app/"; }
-    {
-      path = toString myEmacsLauncher;
-      section = "others";
-    }
     {
       path = "${config.users.users.${user}.home}/.local/share/";
       section = "others";
