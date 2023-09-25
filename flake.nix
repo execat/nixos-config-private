@@ -3,7 +3,7 @@
   description = "Starter Configuration for NixOS and MacOS";
 
   inputs = {
-    nixpkgs.url = "github:dustinlyons/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     agenix.url = "github:ryantm/agenix";
     home-manager.url = "github:nix-community/home-manager";
     darwin = {
@@ -11,7 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew = {
-      url = "github:zhaofengli-wip/nix-homebrew";
+      url = "github:zhaofengli/nix-homebrew";
     };
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
-      url = "git+ssh://git@github.com/dustinlyons/nix-secrets.git"; # Change this!
+      url = "git+ssh://git@github.com/execat/nix-secrets.git"; # Change this!
       flake = false;
     };
   };
@@ -34,7 +34,7 @@
   outputs = { self, darwin, nix-homebrew, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko, agenix, secrets } @inputs:
     let
       user = "atm";
-      systems = [ "x86_64-linux" "aarch64-darwin" ];
+      systems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
       devShell = system: let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -54,7 +54,7 @@
 
       darwinConfigurations = let user = "atm"; in {
         macos = darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
+          system = "x86_64-darwin";
           specialArgs = inputs;
           modules = [
             nix-homebrew.darwinModules.nix-homebrew
@@ -67,7 +67,7 @@
                   "homebrew/homebrew-core" = homebrew-core;
                   "homebrew/homebrew-cask" = homebrew-cask;
                 };
-                mutableTaps = false;
+                mutableTaps = true;
                 autoMigrate = true;
               };
             }
