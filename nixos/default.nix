@@ -276,14 +276,11 @@ let user = "atm";
   # My editor runs as a daemon
   services.emacs = {
     enable = true;
-    package = pkgs.emacs-unstable;
-    startupTimeout = "7min"; # dustinlyons/nixpkgs
   };
 
   fonts.packages = with pkgs; [
     dejavu_fonts
     emacs-all-the-icons-fonts
-    feather-font # dustinlyons/nixpkgs
     jetbrains-mono
     font-awesome
     noto-fonts

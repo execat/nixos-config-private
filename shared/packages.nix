@@ -36,6 +36,7 @@ with pkgs; [
   nodejs
 
   # Text and terminal utilities
+  emacs
   htop
   hunspell
   iftop
