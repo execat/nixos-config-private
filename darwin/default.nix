@@ -35,7 +35,6 @@ let user = "anuj.more"; in
 
   # Load configuration that is shared across systems
   environment.systemPackages = with pkgs; [
-    emacs-unstable
   ] ++ (import ../shared/packages.nix { inherit pkgs; });
 
   # Enable fonts dir

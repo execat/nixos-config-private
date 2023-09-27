@@ -1,36 +1,25 @@
 {}:
 
 [
+  # Management
+  "amethyst"
+  "flux"
+  "meetingbar"
+  "menumeters"
+
   # Development Tools
-  "homebrew/cask/docker"
-  "insomnia"
-  "ngrok"
-  "postico"
+  "devdocs"
+  "goland"
+  "utm"
   "visual-studio-code"
 
-  # Communication Tools
-  "discord"
-  "loom"
-  "notion"
-  "slack"
-  "telegram"
-  "zoom"
-
-  # Utility Tools
-  "appcleaner"
-  "syncthing"
-
   # Entertainment Tools
-  "steam"
   "vlc"
 
   # Productivity Tools
+  "kap"
   "raycast"
-  "asana"
 
   # Browsers
-  "google-chrome"
-
-  # AI
-  "diffusionbee"
+  "firefox"
 ]

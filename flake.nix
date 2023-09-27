@@ -3,14 +3,17 @@
   description = "Starter Configuration for NixOS and MacOS";
 
   inputs = {
-    nixpkgs.url = "github:dustinlyons/nixpkgs/master";
+    nixpkgs = {
+      # This revision: 27th Sept 2023, 1945
+      url = "github:nixos/nixpkgs?rev=ec68439bdc77ee684a4b2846f03677c5c50920a9";
+    };
     home-manager.url = "github:nix-community/home-manager";
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew = {
-      url = "github:zhaofengli-wip/nix-homebrew";
+      url = "github:zhaofengli/nix-homebrew";
     };
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -57,11 +60,6 @@
               nix-homebrew = {
                 enable = true;
                 user = "${user}";
-                taps = {
-                  "homebrew/homebrew-core" = homebrew-core;
-                  "homebrew/homebrew-cask" = homebrew-cask;
-                };
-                mutableTaps = false;
                 autoMigrate = true;
               };
             }

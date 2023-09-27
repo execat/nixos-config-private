@@ -2,11 +2,6 @@
 
 let
   user = "anuj.more";
-  # Define the content of your file as a derivation
-  myEmacsLauncher = pkgs.writeScript "emacs-launcher.command" ''
-    #!/bin/sh
-    emacsclient -c -n &
-  '';
   sharedFiles = import ../shared/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit config pkgs; };
 in
@@ -23,19 +18,42 @@ in
     shell = pkgs.zsh;
   };
 
-  homebrew.enable = true;
-  homebrew.casks = pkgs.callPackage ./casks.nix {};
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
+    global = {
+      brewfile = true;
+    };
+    taps = [
+      "homebrew/core"
+      "homebrew/cask"
+      "sourcegraph/src-cli"
+      {
+        name = "flip/homebrew";
+        clone_target = "git@gitlab.myteksi.net:spartan/flip/homebrew.git";
+        force_auto_update = true;
+      }
+    ];
+    brews = [
+      "src-cli"
+      "grab-kit"
+    ];
+    casks = pkgs.callPackage ./casks.nix {};
 
-  # These app IDs are from using the mas CLI app
-  # mas = mac app store
-  # https://github.com/mas-cli/mas
-  #
-  # $ nix shell nixpkgs#mas
-  # $ mas search <app name>
-  #
-  homebrew.masApps = {
-    "1password" = 1333542190;
-    "wireguard" = 1451685025;
+    # These app IDs are from using the mas CLI app
+    # mas = mac app store
+    # https://github.com/mas-cli/mas
+    #
+    # $ nix shell nixpkgs#mas
+    # $ mas search <app name>
+    #
+    masApps = {
+      # "wireguard" = 1451685025;
+    };
   };
 
   # Enable home-manager
@@ -47,7 +65,6 @@ in
       home.file = lib.mkMerge [
         sharedFiles
         additionalFiles
-        { "emacs-launcher.command".source = myEmacsLauncher; }
       ];
       home.stateVersion = "21.11";
       programs = {} // import ../shared/home-manager.nix { inherit config pkgs lib; };
@@ -61,32 +78,18 @@ in
   # Fully declarative dock using the latest from Nix Store
   local.dock.enable = true;
   local.dock.entries = [
-    { path = "/Applications/Slack.app/"; }
-    { path = "/System/Applications/Messages.app/"; }
-    { path = "/System/Applications/Facetime.app/"; }
     { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
-    { path = "/System/Applications/Music.app/"; }
-    { path = "/System/Applications/News.app/"; }
-    { path = "/System/Applications/Photos.app/"; }
-    { path = "/System/Applications/Photo Booth.app/"; }
-    { path = "/System/Applications/TV.app/"; }
-    { path = "/Applications/Asana.app/"; }
-    { path = "/Applications/Drafts.app/"; }
-    { path = "/System/Applications/Home.app/"; }
+    { path = "/Applications/Firefox.app/"; }
+    { path = "/Applications/Google Chrome.app"; }
+    { path = "/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app"; }
+    { path = "/Applications/zoom.us.app"; }
+    { path = "/Applications/GoLand.app"; }
+    { path = "/Applications/UTM.app"; }
+    { path = "/Applications/Visual Studio Code.app"; }
     {
-      path = toString myEmacsLauncher;
-      section = "others";
-    }
-    {
-      path = "${config.users.users.${user}.home}/.local/share/";
-      section = "others";
-      options = "--sort name --view grid --display folder";
-    }
-    {
-      path = "${config.users.users.${user}.home}/.local/share/downloads";
+      path = "${config.users.users.${user}.home}/Downloads/";
       section = "others";
       options = "--sort name --view grid --display stack";
     }
   ];
-
 }

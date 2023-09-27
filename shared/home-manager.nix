@@ -27,10 +27,9 @@ let name = "Anuj More";
     fi
 
     # Define variables for directories
-    export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
-    export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
     export PATH=$HOME/.local/share/bin:$PATH
-    export PNPM_HOME=~/.pnpm-packages
+    export PATH=$HOME/.bin:$PATH
+    export PATH=/opt/homebrew/bin:$PATH
 
     # Remove history data we don't want to see
     export HISTIGNORE="pwd:ls:cd"
@@ -42,22 +41,6 @@ let name = "Anuj More";
     export ALTERNATE_EDITOR=""
     export EDITOR="emacsclient -t"
     export VISUAL="emacsclient -c -a emacs"
-
-    e() {
-        emacsclient -t "$@"
-    }
-
-    # nix shortcuts
-    shell() {
-        nix-shell '<nixpkgs>' -A "$1"
-    }
-
-    # pnpm is a javascript package manager
-    alias pn=pnpm
-    alias px=pnpx
-
-    # Use difftastic, syntax-aware diffing
-    alias diff=difft
 
     # Always color ls and group directories
     alias ls='ls --color=auto'
@@ -72,9 +55,9 @@ let name = "Anuj More";
       enable = true;
     };
     extraConfig = {
-      init.defaultBranch = "main";
+      init.defaultBranch = "dev";
       core = { 
-	    editor = "vim";
+        editor = "vim";
         autocrlf = "input";
       };
       pull.rebase = true;
