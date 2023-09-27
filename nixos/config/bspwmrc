@@ -69,19 +69,19 @@ notify-send 'Emacs daemon started.'
 # Desktop 1
 # Email, Calendar, News (General)
 bspc rule -a Google-chrome -o desktop='^1'
-/etc/profiles/per-user/%USER%/bin/google-chrome-stable "https://www.fastmail.com" "https://calendar.google.com/calendar/u/0/r" &!
+/etc/profiles/per-user/anuj.more/bin/google-chrome-stable "https://www.fastmail.com" "https://calendar.google.com/calendar/u/0/r" &!
 
 sleep 1
 
 bspc rule -a Google-chrome -o desktop='^1'
-/etc/profiles/per-user/%USER%/bin/google-chrome-stable --new-window "https://www.techmeme.com" "https://www.inoreader.com/" &!
+/etc/profiles/per-user/anuj.more/bin/google-chrome-stable --new-window "https://www.techmeme.com" "https://www.inoreader.com/" &!
 
 sleep 1
 
 # Desktop 2
 # Terminal, Emacs (IDE)
 bspc rule -a Alacritty -o desktop='^2'
-/etc/profiles/per-user/%USER%/bin/alacritty -e sh -c 'tmux attach || tmux new-session' &
+/etc/profiles/per-user/anuj.more/bin/alacritty -e sh -c 'tmux attach || tmux new-session' &
 
 sleep 1
 
@@ -93,7 +93,7 @@ sleep .5
 # Desktop 3
 # ChatGPT, Emacs
 bspc rule -a Google-chrome -o desktop='^3'
-/etc/profiles/per-user/%USER%/bin/google-chrome-stable --new-window "https://chat.openai.com" &!
+/etc/profiles/per-user/anuj.more/bin/google-chrome-stable --new-window "https://chat.openai.com" &!
 
 sleep .5
 
@@ -105,7 +105,7 @@ sleep .5
 # Desktop 5
 # Apple Music, Emacs
 bspc rule -a Cider -o desktop='^5'
-/etc/profiles/per-user/%USER%/bin/cider &!
+/etc/profiles/per-user/anuj.more/bin/cider &!
 
 sleep 1
 
