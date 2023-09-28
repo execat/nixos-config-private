@@ -19,15 +19,15 @@ in
   };
 
   homebrew = {
-    enable = false;
+    enable = true;
     onActivation = {
       autoUpdate = true;
       cleanup = "zap";
       upgrade = true;
     };
     taps = [
-      "homebrew/core"
-      "homebrew/cask"
+      # "homebrew/core"
+      # "homebrew/cask"
       "sourcegraph/src-cli"
       {
         name = "flip/homebrew";

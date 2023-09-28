@@ -54,34 +54,18 @@
           system = "aarch64-darwin";
           specialArgs = inputs;
           modules = [
-            # nix-homebrew.darwinModules.nix-homebrew
+            nix-homebrew.darwinModules.nix-homebrew
             home-manager.darwinModules.home-manager
-            # {
-            #   nix-homebrew = {
-            #     enable = false;
-            #     user = "${user}";
-            #     autoMigrate = true;
-            #   };
-            # }
+            {
+              nix-homebrew = {
+                enable = true;
+                user = "${user}";
+                autoMigrate = true;
+              };
+            }
             ./darwin
           ];
         };
       };
-
-      nixosConfigurations = let user = "anuj.more"; in {
-        nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = inputs;
-          modules = [
-            ./nixos
-            disko.nixosModules.disko
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} = import ./nixos/home-manager.nix;
-            }
-          ];
-        };
-      };
-  };
+    };
 }

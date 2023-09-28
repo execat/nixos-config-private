@@ -35,6 +35,14 @@ with pkgs; [
   tmux
   zsh-powerlevel10k
 
+  # Programming
+  go_1_21
+  gotools
+  golangci-lint
+  gopls
+  go-outline
+  gopkgs
+
   # Python packages
   python311
   python311Packages.virtualenv
