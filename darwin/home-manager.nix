@@ -19,14 +19,11 @@ in
   };
 
   homebrew = {
-    enable = true;
+    enable = false;
     onActivation = {
       autoUpdate = true;
       cleanup = "zap";
       upgrade = true;
-    };
-    global = {
-      brewfile = true;
     };
     taps = [
       "homebrew/core"

@@ -54,15 +54,15 @@
           system = "aarch64-darwin";
           specialArgs = inputs;
           modules = [
-            nix-homebrew.darwinModules.nix-homebrew
+            # nix-homebrew.darwinModules.nix-homebrew
             home-manager.darwinModules.home-manager
-            {
-              nix-homebrew = {
-                enable = true;
-                user = "${user}";
-                autoMigrate = true;
-              };
-            }
+            # {
+            #   nix-homebrew = {
+            #     enable = false;
+            #     user = "${user}";
+            #     autoMigrate = true;
+            #   };
+            # }
             ./darwin
           ];
         };
