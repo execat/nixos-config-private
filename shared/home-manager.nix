@@ -27,20 +27,25 @@ let name = "Anuj More";
     fi
 
     # Define variables for directories
+    export PATH=$PATH:/opt/homebrew/bin
     export PATH=$HOME/.local/share/bin:$PATH
-    export PATH=$HOME/.bin:$PATH
-    export PATH=/opt/homebrew/bin:$PATH
+    export PATH=$HOME/bin:$PATH
 
-    # Remove history data we don't want to see
-    export HISTIGNORE="pwd:ls:cd"
+    export GOPATH=$HOME/gopath
+    export PROTO_PATH=${pkgs.protobuf}
+    export PATH=$PATH:$PROTO_PATH/bin
 
-    # Ripgrep alias
-    alias search=rg -p --glob '!node_modules/*'  $@
+    # Athens Proxy
+    export GOPROXY="goproxy.myteksi.net|proxy.golang.org,direct"
+    export GONOSUMDB="gitlab.myteksi.net"
+    export GONOPROXY="none"
+
+    export VENDOR=gitlab.myteksi.net/gophers/go/vendor
+    # export GRAB_SHELL_CONFIG_FILE=~/_code/grab/config
 
     # Emacs is my editor
-    export ALTERNATE_EDITOR=""
-    export EDITOR="emacsclient -t"
-    export VISUAL="emacsclient -c -a emacs"
+    export EDITOR="vim"
+    export VISUAL="vim"
 
     # Always color ls and group directories
     alias ls='ls --color=auto'
@@ -251,11 +256,11 @@ let name = "Anuj More";
       ''
       (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
         ''
-          IdentityFile /home/${user}/.ssh/id_github
+          IdentityFile /home/${user}/.ssh/github_personal
         '')
       (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
         ''
-          IdentityFile /Users/${user}/.ssh/id_github
+          IdentityFile /Users/${user}/.ssh/github_personal
         '')
     ];
   };
