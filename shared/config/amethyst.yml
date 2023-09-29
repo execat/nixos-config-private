@@ -21,14 +21,14 @@ layouts:
   - wide
   # - two-pane
   # - middle-wide
-  # - 3column-left
+  - 3column-left
   # - 3column-middle
   # - 3column-right
   # - 4column-left
   # - 4column-right
   - column
   # - row
-  # - floating
+  - floating
   # - widescreen-tall
   # - widescreen-tall-right
   # - bsp
@@ -62,32 +62,32 @@ mod2:
 
 # Move to the next layout in the list.
 cycle-layout:
-  mod: mod1
-  key: space
+  mod: mod2
+  key: 0
 
 # Move to the previous layout in the list.
 cycle-layout-backward:
   mod: mod2
-  key: space
+  key: 9
 
 # Shrink the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 shrink-main:
-  mod: mod1
+  mod: mod2
   key: h
 
 # Expand the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 expand-main:
-  mod: mod1
+  mod: mod2
   key: l
 
 # Increase the number of windows in the main pane. Note that not all layouts respond to this command.
 increase-main:
-  mod: mod1
+  mod: mod2
   key: ','
 
 # Decrease the number of windows in the main pane. Note that not all layouts respond to this command.
 decrease-main:
-  mod: mod1
+  mod: mod2
   key: '.'
 
 # General purpose command for custom layouts. Functionality is layout-dependent.
@@ -110,52 +110,52 @@ decrease-main:
 # Focus the next window in the list going counter-clockwise.
 focus-ccw:
   mod: mod1
-  key: j
+  key: k
 
 # Focus the next window in the list going clockwise.
 focus-cw:
   mod: mod1
-  key: k
+  key: j
 
 # Focus the main window in the list.
 focus-main:
   mod: mod1
   key: m
 
-# Focus the next screen in the list going counter-clockwise.
-focus-screen-ccw:
-  mod: mod1
-  key: p
-
-# Focus the next screen in the list going clockwise.
-focus-screen-cw:
-  mod: mod1
-  key: n
-
-# Move the currently focused window onto the next screen in the list going counter-clockwise.
-swap-screen-ccw:
-  mod: mod2
-  key: h
-
-# Move the currently focused window onto the next screen in the list going clockwise.
-swap-screen-cw:
-  mod: mod2
-  key: l
-
+# # Focus the next screen in the list going counter-clockwise.
+# focus-screen-ccw:
+#   mod: mod1
+#   key: p
+# 
+# # Focus the next screen in the list going clockwise.
+# focus-screen-cw:
+#   mod: mod1
+#   key: n
+# 
+# # Move the currently focused window onto the next screen in the list going counter-clockwise.
+# swap-screen-ccw:
+#   mod: mod2
+#   key: h
+# 
+# # Move the currently focused window onto the next screen in the list going clockwise.
+# swap-screen-cw:
+#   mod: mod2
+#   key: l
+# 
 # Swap the position of the currently focused window with the next window in the list going counter-clockwise.
 swap-ccw:
   mod: mod2
-  key: j
+  key: k
 
 # Swap the position of the currently focused window with the next window in the list going clockwise.
 swap-cw:
   mod: mod2
-  key: k
+  key: j
 
 # Swap the position of the currently focused window with the main window in the list.
 swap-main:
-  mod: mod1
-  key: enter
+  mod: mod2
+  key: m
 
 # Move focus to the n-th screen in the list; e.g., focus-screen-3 will move mouse focus to the 3rd screen. Note that the main window in the given screen will be focused.
 #focus-screen-n:
@@ -172,25 +172,25 @@ swap-main:
 #   mod: mod1
 #   key: i
 
-# Select tall layout
-select-tall-layout:
-  mod: mod1
-  key: a
+# # Select tall layout
+# select-tall-layout:
+#   mod: mod1
+#   key: a
 
-# Select wide layout
-select-wide-layout:
-  mod: mod1
-  key: s
+# # Select wide layout
+# select-wide-layout:
+#   mod: mod1
+#   key: s
 
-# Select fullscreen layout
-select-fullscreen-layout:
-  mod: mod1
-  key: d
+# # Select fullscreen layout
+# select-fullscreen-layout:
+#   mod: mod1
+#   key: d
 
-# Select column layout
-select-column-layout:
-  mod: mod1
-  key: f
+# # Select column layout
+# select-column-layout:
+#   mod: mod1
+#   key: f
 
 # Move the currently focused window to the space to the left.
 throw-space-left:
@@ -202,20 +202,20 @@ throw-space-right:
   mod: mod2
   key: right
 
-# Toggle the floating state of the currently focused window; i.e., if it was floating make it tiled and if it was tiled make it floating.
-toggle-float:
-  mod: mod1
-  key: t
+# # Toggle the floating state of the currently focused window; i.e., if it was floating make it tiled and if it was tiled make it floating.
+# toggle-float:
+#   mod: mod1
+#   key: t
 
 # Display the layout HUD with the current layout on each screen.
 display-current-layout:
   mod: mod1
-  key: i
+  key: /
 
 # Turn on or off tiling entirely.
 toggle-tiling:
-  mod: mod1
-  key: t
+  mod: mod2
+  key: f
 
 # Rerun the current layout's algorithm.
 reevaluate-windows:
@@ -223,9 +223,9 @@ reevaluate-windows:
   key: z
 
 # Turn on or off focus-follows-mouse.
-toggle-focus-follows-mouse:
-  mod: mod2
-  key: x
+# toggle-focus-follows-mouse:
+#   mod: mod2
+#   key: x
 
 # Automatically quit and reopen Amethyst.
 relaunch-amethyst:
@@ -236,16 +236,16 @@ relaunch-amethyst:
 disable-padding-on-builtin-display: false
 
 # Boolean flag for whether or not to add margins betwen windows (default false).
-window-margins: false
+window-margins: true
 
 # Boolean flag for whether or not to set window margins if there is only one window on the screen, assuming window margins are enabled (default false).
-smart-window-margins: false
+smart-window-margins: true
 
 # # Add 10px margin between windows
 # window-margins: true
 # window-margin-size: 5
 # The size of the margins between windows (in px, default 0).
-window-margin-size: 0
+window-margin-size: 5
 
 # The max number of windows that may be visible on a screen at one time before
 # additional windows are minimized. A value of 0 disables the feature.
@@ -270,7 +270,7 @@ ignore-menu-bar: false
 float-small-windows: true
 
 # true if the mouse should move position to the center of a window when it becomes focused (default false). Note that this is largely incompatible with focus-follows-mouse.
-mouse-follows-focus: false
+mouse-follows-focus: true
 
 # true if the windows underneath the mouse should become focused as the mouse moves (default false). Note that this is largely incompatible with mouse-follows-focus
 focus-follows-mouse: false
