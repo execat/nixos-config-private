@@ -51,6 +51,7 @@ let user = "anuj.more"; in
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
         ApplePressAndHoldEnabled = false;
+        AppleShowScrollBars = "Always";
 
         # 120, 90, 60, 30, 12, 6, 2
         KeyRepeat = 2;
@@ -64,7 +65,7 @@ let user = "anuj.more"; in
       };
 
       dock = {
-        autohide = false;
+        autohide = true;
         show-recents = false;
         launchanim = true;
         orientation = "bottom";
@@ -73,6 +74,8 @@ let user = "anuj.more"; in
 
       finder = {
         _FXShowPosixPathInTitle = false;
+        ShowPathbar = true;
+        QuitMenuItem = true;
       };
 
       trackpad = {

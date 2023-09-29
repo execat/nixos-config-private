@@ -36,14 +36,22 @@ with pkgs; [
   zsh-powerlevel10k
 
   # Programming
+  ## Go
   go_1_21
   gotools
   golangci-lint
   gopls
   go-outline
   gopkgs
+  protobuf
 
-  # Python packages
+  ## Grab essentials
+  lab
+
+  ## AWS
+  awscli2 # Check against awscli
+
+  ## Python packages
   python311
   python311Packages.virtualenv
 ]

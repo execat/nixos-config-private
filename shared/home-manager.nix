@@ -35,6 +35,8 @@ let name = "Anuj More";
     export PROTO_PATH=${pkgs.protobuf}
     export PATH=$PATH:$PROTO_PATH/bin
 
+    export HOMEBREW_NO_ANALYTICS=1
+
     # Athens Proxy
     export GOPROXY="goproxy.myteksi.net|proxy.golang.org,direct"
     export GONOSUMDB="gitlab.myteksi.net"
