@@ -54,10 +54,10 @@ let user = "anuj.more"; in
         ApplePressAndHoldEnabled = false;
 
         # 120, 90, 60, 30, 12, 6, 2
-        KeyRepeat = 1;
+        KeyRepeat = 2;
 
         # 120, 94, 68, 35, 25, 15
-        InitialKeyRepeat = 5;
+        InitialKeyRepeat = 15;
 
         AppleFontSmoothing = 1;
         AppleKeyboardUIMode = 3;
