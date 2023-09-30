@@ -6,7 +6,7 @@ with pkgs; [
   aspell
   aspellDicts.en
   bash-completion
-  coreutils
+  coreutils findutils moreutils
   gcc
   neofetch
   openssh
@@ -24,15 +24,23 @@ with pkgs; [
   meslo-lgs-nf
 
   # Node.js development tools
-  fzf
   nodejs
 
   # Text and terminal utilities
+  bat
+  curl
+  direnv
+  eza
+  fasd
+  fzf
   htop
   jq
+  pstree
   ripgrep
   tree
   tmux
+  wget
+  yt-dlp
   zsh-powerlevel10k
 
   # Programming

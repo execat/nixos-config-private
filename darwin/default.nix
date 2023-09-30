@@ -50,36 +50,61 @@ let user = "anuj.more"; in
 
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
-        ApplePressAndHoldEnabled = false;
         AppleShowScrollBars = "Always";
+        ApplePressAndHoldEnabled = false;
 
         # 120, 90, 60, 30, 12, 6, 2
-        KeyRepeat = 2;
+        KeyRepeat = 1;
 
         # 120, 94, 68, 35, 25, 15
-        InitialKeyRepeat = 15;
+        InitialKeyRepeat = 5;
+
+        AppleFontSmoothing = 1;
+        AppleKeyboardUIMode = 3;
+        NSAutomaticCapitalizationEnabled = false;
+        NSAutomaticDashSubstitutionEnabled = false;
+        NSAutomaticPeriodSubstitutionEnabled = false;
+        NSAutomaticQuoteSubstitutionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = false;
+        NSNavPanelExpandedStateForSaveMode = true;
+        NSNavPanelExpandedStateForSaveMode2 = true;
+        NSTableViewDefaultSizeMode = 1;
+        NSTextShowsControlCharacters = true;
+        NSWindowResizeTime = 0.001;
+        PMPrintingExpandedStateForPrint = true;
 
         "com.apple.mouse.tapBehavior" = 1;
+        "com.apple.swipescrolldirection" = false;
         "com.apple.sound.beep.volume" = 0.0;
         "com.apple.sound.beep.feedback" = 0;
       };
 
       dock = {
         autohide = true;
+        autohide-time-modifier = 0.6;
+        enable-spring-load-actions-on-all-items = true;
+        launchanim = false;
+        mineffect = "suck";
+        minimize-to-application = true;
+        mouse-over-hilite-stack = true;
+        mru-spaces = false;
+        show-process-indicators = true;
         show-recents = false;
-        launchanim = true;
-        orientation = "bottom";
+        showhidden = true;
         tilesize = 48;
       };
 
       finder = {
-        _FXShowPosixPathInTitle = false;
-        ShowPathbar = true;
+        _FXShowPosixPathInTitle = true;
+        AppleShowAllExtensions = true;
+        FXEnableExtensionChangeWarning = false;
         QuitMenuItem = true;
       };
 
       trackpad = {
         Clicking = true;
+        FirstClickThreshold = 0;
+        SecondClickThreshold = 0;
         TrackpadThreeFingerDrag = true;
       };
     };

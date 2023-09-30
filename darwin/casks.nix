@@ -1,11 +1,8 @@
 {}:
 
 [
-  # Management
-  "amethyst"
-  "flux"
-  "meetingbar"
-  "menumeters"
+  # Browsers
+  "firefox"
 
   # Development Tools
   "devdocs"
@@ -16,10 +13,17 @@
   # Entertainment Tools
   "vlc"
 
-  # Productivity Tools
+  # Essential Tools
+  "amethyst"
+  "flux"
   "kap"
+  "keka"
+  "keepingyouawake"
+  "lulu"
+  "meetingbar"
+  "menumeters"
   "raycast"
 
-  # Browsers
-  "firefox"
+  # Database Tools
+  "dbeaver-community"
 ]
