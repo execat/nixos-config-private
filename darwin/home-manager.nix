@@ -95,6 +95,8 @@ in
   local.dock.entries = [
     { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
     { path = "/Applications/Firefox.app/"; }
+    { path = "/Applications/Thunderbird.app/"; }
+    { path = "/System/Applications/System Settings.app/"; }
     {
       path = "${config.users.users.${user}.home}/Downloads/";
       section = "others";
