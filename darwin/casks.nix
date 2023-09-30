@@ -73,24 +73,23 @@
 
   # Programming
   "github"
-  "virtualbox"
-  # "virtualbox-extension-pack"
+  "utm"
 
   # Languages
-  "racket"
+  # "racket"
 
   # Devices
   "android-file-transfer"
   "android-platform-tools"
 
   # IDE
-  "anaconda"
+  # "anaconda"
   "android-studio"
   "emacs"
   "gdevelop"
   "hex-fiend"
   "livebook"
-  "pharo-launcher"          # Smalltalk environment
+  "pharo-project/pharo/pharo-launcher"          # Smalltalk environment
   "r"
   "rstudio"
   "sublime-text"
@@ -98,19 +97,16 @@
 
   # RestClient
   # "cocoarestclient"
-  "http-toolkit"
-  "insomnia"
+  # "http-toolkit"
+  # "insomnia"
   # "postman"
 
   # Task maanger
   "anki"
   "notion"
   "nvalt"                   # Notational Velocity
-  "obsidian"
 
   # Book
-  "adobe-acrobat-reader"
-  "adobe-digital-editions"
   "calibre"
   # "pdf-expert" # Paid with trial for editing PDFs
   "sigil" # Epub editor
@@ -131,7 +127,6 @@
   "synfigstudio"
 
   # Nice to have utils
-  "alacritty"
   "angry-ip-scanner"
   "arduino"
   # "background-music"
@@ -139,22 +134,20 @@
   "docker"
   # "deeper"
   "devdocs"
-  "google-earth-pro"
+  # "google-earth-pro"
   "kap"
-  "karabiner-elements"      # Password
+  # "karabiner-elements"      # Password
   "meld"
   "numi"
   "squeak"
   "tomighty"
   "suspicious-package"
   "vienna"
-  "xquartz"
+  # "xquartz"
 
   # Good to have communication
-  "bluejeans"
   "discord"
   "keybase"
-  "skype"
   "telegram"
   "zoom"
 
@@ -162,19 +155,14 @@
   # Considered repetier-host, slic3r, wings3d
   "ultimaker-cura"
   "openscad"
-  "kicad"
+  # "kicad"
 
   # Games
-  "0-ad"
+  # "0-ad"
   # "chessx"
   "minecraft"
   "openttd"
   "openrct2"
   "steam"
   "widelands"
-
-  # Brew fonts
-  "font-inconsolata-nerd-font"
-  "font-meslo-lg-nerd-font"
-  "font-noto-nastaliq-urdu"
 ]

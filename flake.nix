@@ -67,8 +67,8 @@
                 enable = true;
                 user = "${user}";
                 taps = {
-                  "homebrew/homebrew-core" = homebrew-core;
-                  "homebrew/homebrew-cask" = homebrew-cask;
+                  # "homebrew/homebrew-core" = homebrew-core;
+                  # "homebrew/homebrew-cask" = homebrew-cask;
                 };
                 mutableTaps = true;
                 autoMigrate = true;
