@@ -5,4 +5,8 @@
   ".emacs.d/init.el" = {
     text = builtins.readFile ../shared/config/emacs/init.el;
   };
+
+  ".config/amethyst/amethyst.yml" = {
+    text = builtins.readFile ../shared/config/amethyst.yml;
+  };
 }
