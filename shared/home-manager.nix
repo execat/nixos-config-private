@@ -65,12 +65,13 @@ let name = "Anuj More";
       init.defaultBranch = "dev";
 
       core = { 
-        fsmonitor = true;
+        # fsmonitor = true;
         editor = "vim";
         autocrlf = "input";
       };
       feature.manyFiles = true;
       pull.rebase = true;
+      push.autoSetupRemote = true;
       rebase.autoStash = true;
       url = {
         "ssh://git@gitlab.myteksi.net:" = { insteadOf = "https://gitlab.myteksi.net/"; };
