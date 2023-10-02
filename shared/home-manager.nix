@@ -63,12 +63,18 @@ let name = "Anuj More";
     };
     extraConfig = {
       init.defaultBranch = "dev";
+
       core = { 
+        fsmonitor = true;
         editor = "vim";
         autocrlf = "input";
       };
+      feature.manyFiles = true;
       pull.rebase = true;
       rebase.autoStash = true;
+      url = {
+        "ssh://git@gitlab.myteksi.net:" = { insteadOf = "https://gitlab.myteksi.net/"; };
+      };
     };
   };
 
