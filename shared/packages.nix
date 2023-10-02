@@ -27,20 +27,11 @@ with pkgs; [
   nodejs
 
   # Text and terminal utilities
-  bat
   curl
-  direnv
-  eza
   fasd
-  fzf
-  htop
-  jq
   pstree
-  ripgrep
   tree
-  tmux
   wget
-  yt-dlp
   zsh-powerlevel10k
 
   # Programming

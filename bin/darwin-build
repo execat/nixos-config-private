@@ -23,7 +23,8 @@ sudo /bin/chmod +a "anuj.more allow list,add_file,search,delete,add_subdirectory
 
 echo "${GREEN}Starting build...${CLEAR}"
 
-nix --experimental-features 'nix-command flakes' build .#$SYSTEM $@
+# nix --experimental-features 'nix-command flakes' build .#$SYSTEM $@
+nix --experimental-features 'nix-command flakes' build --show-trace .#$SYSTEM $@
 
 echo "${GREEN}Switching to new generation...${CLEAR}"
 ./result/sw/bin/darwin-rebuild switch --flake .#$FLAKE $@
