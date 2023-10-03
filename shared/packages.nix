@@ -43,6 +43,11 @@ with pkgs; [
   go-outline
   gopkgs
   protobuf
+  protoc-gen-go
+  protoc-gen-go-grpc
+  go-bindata
+  go-swagger
+  
 
   ## Grab essentials
   lab

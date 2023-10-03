@@ -195,7 +195,7 @@ let name = "Anuj More";
     enable = true;
   };
 
-  nix-index.enable = true;
+  # nix-index.enable = true;
 
   noti.enable = true;
 
@@ -468,6 +468,8 @@ let name = "Anuj More";
       export PATH=$HOME/bin:$PATH
 
       export GOPATH=$HOME/gopath
+      # export GOBIN="$GOPATH/bin"
+      export GOBIN="$HOME/gopath/bin"
       export PROTO_PATH=${pkgs.protobuf}
       export PATH=$PATH:$PROTO_PATH/bin
 
