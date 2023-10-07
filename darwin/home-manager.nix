@@ -7,7 +7,7 @@ let
 in
 {
   imports = [
-   ./dock
+    ./dock
   ];
 
   # It me
