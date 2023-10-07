@@ -18,18 +18,27 @@ in
     shell = pkgs.zsh;
   };
 
-  homebrew.enable = true;
-  homebrew.casks = pkgs.callPackage ./casks.nix {};
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
+    taps = [];
+    brews = [];
+    casks = pkgs.callPackage ./casks.nix {};
 
-  # These app IDs are from using the mas CLI app
-  # mas = mac app store
-  # https://github.com/mas-cli/mas
-  #
-  # $ nix shell nixpkgs#mas
-  # $ mas search <app name>
-  #
-  homebrew.masApps = {
-    "wireguard" = 1451685025;
+    # These app IDs are from using the mas CLI app
+    # mas = mac app store
+    # https://github.com/mas-cli/mas
+    #
+    # $ nix shell nixpkgs#mas
+    # $ mas search <app name>
+    #
+    masApps = {
+      # "wireguard" = 1451685025;
+    };
   };
 
   # Enable home-manager
@@ -96,6 +105,8 @@ in
     { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
     { path = "/Applications/Firefox.app/"; }
     { path = "/Applications/Thunderbird.app/"; }
+    { path = "/Applications/UTM.app/"; }
+    { path = "/Applications/Visual Studio Code.app/"; }
     { path = "/System/Applications/System Settings.app/"; }
     {
       path = "${config.users.users.${user}.home}/Downloads/";

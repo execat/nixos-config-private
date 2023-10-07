@@ -39,6 +39,7 @@
   # "mas"
   "meetingbar"
   "menumeters"
+  "raycast"
   "smcfancontrol"
   "spaceradar"
 

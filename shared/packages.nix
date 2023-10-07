@@ -138,4 +138,5 @@ with pkgs; [
   duti # Change default applications for extensions
   ffmpeg-full
   graphviz
+  cachix
 ]

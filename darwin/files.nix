@@ -32,4 +32,8 @@ let
       fi
     '';
   };
+
+  ".config/amethyst/amethyst.yml" = {
+    text = builtins.readFile ./config/amethyst.yml;
+  };
 }
