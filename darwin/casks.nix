@@ -88,7 +88,6 @@
   # IDE
   # "anaconda"
   "android-studio"
-  "emacs"
   "gdevelop"
   "hex-fiend"
   "livebook"
