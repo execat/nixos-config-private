@@ -23,7 +23,7 @@ with pkgs; [
 
   # Media-related packages
   dejavu_fonts
-  ffmpeg
+  ffmpeg-full
   fd
   font-awesome
   glow
@@ -43,7 +43,6 @@ with pkgs; [
   zsh-powerlevel10k
 
   # Languages: Practical
-  adoptopenjdk-bin
   elixir
   go
   haskellPackages.ghc
@@ -88,9 +87,6 @@ with pkgs; [
   darkhttpd
   nginx
 
-  # Text editors
-  neovim
-
   # Ruby
   ruby_3_2
   rubyPackages_3_2.pry
@@ -100,7 +96,6 @@ with pkgs; [
   rubyPackages_3_2.rest-client
 
   duti # Change default applications for extensions
-  ffmpeg-full
   graphviz
   cachix
 ]

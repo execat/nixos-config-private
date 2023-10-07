@@ -27,11 +27,13 @@
   # "yubico-yubikey-piv-manager"
 
   # Essential utils
+  "adobe-digital-editions"
   "balenaetcher"
   # "clover-configurator"
   "diffmerge"
   "dropbox"
   "flux"
+  "google-earth-pro"
   "keka"
   "keepingyouawake"
   "launchrocket"
@@ -95,6 +97,7 @@
   "rstudio"
   "sublime-text"
   "textmate"
+  "visual-studio-code"
 
   # RestClient
   # "cocoarestclient"
@@ -108,7 +111,7 @@
   "nvalt"                   # Notational Velocity
 
   # Book
-  "calibre"
+  # "calibre"
   # "pdf-expert" # Paid with trial for editing PDFs
   "sigil" # Epub editor
   # "ultimate" # Paid with trial
@@ -144,7 +147,7 @@
   "tomighty"
   "suspicious-package"
   "vienna"
-  # "xquartz"
+  "xquartz"
 
   # Good to have communication
   "discord"
@@ -156,7 +159,7 @@
   # Considered repetier-host, slic3r, wings3d
   "ultimaker-cura"
   "openscad"
-  # "kicad"
+  "kicad"
 
   # Games
   # "0-ad"

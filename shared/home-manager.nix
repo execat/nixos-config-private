@@ -144,7 +144,6 @@ let name = "Anuj More";
       
       core = { 
         # fsmonitor = true;
-        editor = "vim";
         autocrlf = "input";
       };
       feature.manyFiles = true;
@@ -193,6 +192,12 @@ let name = "Anuj More";
 
   neovim = {
     enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimdiffAlias = true;
+    withNodeJs = true;
+    withPython3 = true;
+    withRuby = true;
   };
 
   # nix-index.enable = true;
@@ -327,7 +332,13 @@ let name = "Anuj More";
 
   vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-airline vim-airline-themes vim-startify vim-tmux-navigator ];
+    plugins = with pkgs.vimPlugins; [
+      fzf-vim
+      vim-airline
+      vim-airline-themes
+      vim-startify
+      vim-tmux-navigator
+    ];
     settings = { ignorecase = true; };
     extraConfig = ''
       "" General
@@ -419,6 +430,9 @@ let name = "Anuj More";
 
       "" Like a boss, sudo AFTER opening the file to write
       cmap w!! w !sudo tee % >/dev/null
+
+      "" Ctrl-P
+      nnoremap <c-p> :Files<cr>
 
       let g:startify_lists = [
         \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
