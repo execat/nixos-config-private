@@ -6,13 +6,12 @@ with pkgs; [
   aspell
   aspellDicts.en
   bash-completion
-  coreutils
+  coreutils findutils moreutils
   gcc
   neofetch
   openssh
   sqlite
   wget
-  zip
 
   # Encryption and security tools
   age
@@ -24,59 +23,24 @@ with pkgs; [
 
   # Media-related packages
   dejavu_fonts
+  ffmpeg
   fd
   font-awesome
   glow
   hack-font
+  jetbrains-mono
   meslo-lgs-nf
 
   # Node.js development tools
-  fzf
   nodejs
 
-  # Text and terminal utilities
-  emacs
-  htop
-  hunspell
-  iftop
-  jetbrains-mono
-  jq
-  ripgrep
-  tree
-  tmux
-  unrar
-  unzip
-  zsh-powerlevel10k
-
-  # Python packages
-  python311
-  python311Packages.virtualenv
-
   # Categorize later
-  comma
-  coreutils
-  findutils
-  moreutils
-  openssh
-  cowsay
   curl
-  direnv
   fasd
-  fzf
   pstree
-  tmux
   tree
   wget
-  xz
-  yt-dlp
-  jq
-
-  bat
-  bottom
-  broot
-  eza
-  ripgrep
-  tokei
+  zsh-powerlevel10k
 
   # Languages: Practical
   adoptopenjdk-bin
