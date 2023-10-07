@@ -30,6 +30,8 @@ sudo /bin/chmod +a "atm allow list,add_file,search,delete,add_subdirectory,delet
 
 echo "${GREEN}Starting build...${CLEAR}"
 
+# For debugging
+# nix --experimental-features 'nix-command flakes' build --show-trace .#$SYSTEM $@
 nix --experimental-features 'nix-command flakes' build .#$SYSTEM $@
 
 echo "${GREEN}Switching to new generation...${CLEAR}"
