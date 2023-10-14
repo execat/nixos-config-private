@@ -87,6 +87,8 @@ let user = "atm"; in
         NSTextShowsControlCharacters = true;
         NSWindowResizeTime = 0.001;
         PMPrintingExpandedStateForPrint = true;
+        NSAutomaticWindowAnimationsEnabled = false;
+        NSScrollAnimationEnabled = false;
 
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.swipescrolldirection" = false;
@@ -96,7 +98,8 @@ let user = "atm"; in
 
       dock = {
         autohide = true;
-        autohide-time-modifier = 0.6;
+        autohide-delay = 0.0;
+        autohide-time-modifier = 0.0;
         enable-spring-load-actions-on-all-items = true;
         launchanim = false;
         mineffect = "suck";
@@ -115,6 +118,8 @@ let user = "atm"; in
         FXPreferredViewStyle = "clmv";
         FXEnableExtensionChangeWarning = false;
         QuitMenuItem = true;
+        DisableAllAnimations = true;
+        WarnOnEmptyTrash = false;
       };
 
       smb = {
