@@ -133,6 +133,7 @@
   "angry-ip-scanner"
   "arduino"
   # "background-music"
+  "calibre"
   "charles"
   "docker"
   # "deeper"
