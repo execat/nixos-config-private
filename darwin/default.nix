@@ -59,6 +59,10 @@ let user = "atm"; in
         LSQuarantine = false;
       };
 
+      menuExtraClock = {
+        Show24Hour = true;
+      };
+
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
         AppleShowScrollBars = "Always";
@@ -108,6 +112,7 @@ let user = "atm"; in
       finder = {
        _FXShowPosixPathInTitle = true;
         AppleShowAllExtensions = true;
+        FXPreferredViewStyle = "clmv";
         FXEnableExtensionChangeWarning = false;
         QuitMenuItem = true;
       };

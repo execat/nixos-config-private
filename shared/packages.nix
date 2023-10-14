@@ -67,6 +67,7 @@ with pkgs; [
   erlang
   leiningen
   lua5_4
+  nil
   swiProlog
   yarn
   stack # Use ghc using "stack ghci"

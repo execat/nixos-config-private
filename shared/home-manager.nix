@@ -123,10 +123,8 @@ let name = "Anuj More";
       ds = "diff --staged";
       unstage = "reset HEAD";
       uncommit = "reset --soft HEAD^";
-      olog = "log --oneline";
       diffw = "diff --color --color-words --abbrev";
       lp = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p";
-      unpushed = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches --not --remotes";
       sync = "remote update origin --prune";
       pl = "merge --ff-only @{u}";
       forget="! /usr/local/bin/git fetch -p && /usr/local/bin/git branch -vv | awk '/: gone]/{print $1}' | xargs /usr/local/bin/git branch -D";
@@ -204,8 +202,6 @@ let name = "Anuj More";
 
   noti.enable = true;
 
-  pazi.enable = true;
-
   pet.enable = true;
 
   ripgrep.enable = true;
@@ -279,12 +275,18 @@ let name = "Anuj More";
       }
     ];
     terminal = "screen-256color";
-    prefix = "C-x";
+    prefix = "C-a";
     escapeTime = 10;
     historyLimit = 50000;
     extraConfig = ''
       # Remove Vim mode delays
       set -g focus-events on
+
+      # Start indexing from 1
+      set -g base-index 1
+      set -g pane-base-index 1
+      set-window-option -g pane-base-index 1
+      set-option -g renumber-windows on
 
       # Enable full mouse support
       set -g mouse on
@@ -299,8 +301,8 @@ let name = "Anuj More";
       unbind %
 
       # Split panes, vertical or horizontal
-      bind-key x split-window -v
-      bind-key v split-window -h
+      bind-key x split-window -v -c "#{pane_current_path}" 
+      bind-key v split-window -h -c "#{pane_current_path}"
 
       # Move around panes with vim-like bindings (h,j,k,l)
       bind-key -n M-k select-pane -U
@@ -494,5 +496,12 @@ let name = "Anuj More";
       # Always color ls and group directories
       alias ls='ls --color=auto'
     '';
+  };
+
+  zoxide = {
+    enable = true;
+    options = [
+      "--cmd j"
+    ];
   };
 }
