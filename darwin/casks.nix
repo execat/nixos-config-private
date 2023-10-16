@@ -7,6 +7,7 @@
   # Browsers
   "bitwarden"
   "firefox"
+  "google-chrome"
 
   # Alternative browsers
   "beaker-browser"

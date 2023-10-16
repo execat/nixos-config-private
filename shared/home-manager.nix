@@ -95,7 +95,10 @@ let name = "Anuj More";
 
   direnv.enable = true;
 
-  emacs.enable = true;
+  emacs = {
+    enable = true;
+    package = pkgs.emacs29;
+  };
 
   eza = {
     enable = true;

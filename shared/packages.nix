@@ -36,8 +36,10 @@ with pkgs; [
 
   # Categorize later
   curl
+  cmake libtool
   fasd
   pstree
+  tokei
   tree
   wget
   zsh-powerlevel10k
@@ -67,7 +69,7 @@ with pkgs; [
   erlang
   leiningen
   lua5_4
-  nil
+  nil # Nix
   swiProlog
   yarn
   stack # Use ghc using "stack ghci"
