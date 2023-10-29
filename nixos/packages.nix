@@ -33,4 +33,9 @@ shared-packages ++ [
 
   # PDF viewer
   zathura
+
+  # Fonts
+  nerdfonts
+  lohit-fonts.marathi
+  marathi-cursive
 ]
