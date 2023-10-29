@@ -1,0 +1,30 @@
+#!/bin/sh -e
+
+VERSION=1.0
+
+GREEN='\033[1;32m'
+RED='\033[1;31m'
+CLEAR='\033[0m'
+
+FLAKE="arch"
+SYSTEM="homeConfigurations.$FLAKE.activationPackage"
+
+export NIXPKGS_ALLOW_UNFREE=1
+
+# Navigate to the directory of this script
+cd $(dirname $(readlink -f $0))
+cd ..
+
+echo "${GREEN}Starting build...${CLEAR}"
+
+# For debugging
+# nix --experimental-features 'nix-command flakes' build --show-trace .#$SYSTEM $@
+nix --experimental-features 'nix-command flakes' build .#$SYSTEM $@
+
+echo "${GREEN}Switching to new generation...${CLEAR}"
+./result/bin/home-manager-generation
+
+echo "${GREEN}Cleaning up...${CLEAR}"
+unlink ./result
+
+echo "${GREEN}Done${CLEAR}"

@@ -101,5 +101,18 @@
           ];
         };
       };
-  };
+
+      homeConfigurations = let
+        user = "atm";
+        system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        arch = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./arch
+          ];
+        };
+      };
+    };
 }

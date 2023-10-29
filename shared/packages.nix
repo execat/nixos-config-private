@@ -98,7 +98,6 @@ with pkgs; [
   rubyPackages_3_2.awesome_print
   rubyPackages_3_2.rest-client
 
-  duti # Change default applications for extensions
   graphviz
   cachix
 ]

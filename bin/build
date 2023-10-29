@@ -10,6 +10,8 @@ cd ..
 build() {
     if [ "$(uname)" == "Darwin" ]; then
        ./bin/darwin-build $args
+    elif [ "$(uname -r | grep arch)" ]; then
+       ./bin/arch-build $args
     elif [ "$(uname)" == "Linux" ]; then
        ./bin/nixos-build $args
     else
