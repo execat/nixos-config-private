@@ -141,7 +141,7 @@
   "devdocs"
   # "google-earth-pro"
   "kap"
-  # "karabiner-elements"      # Password
+  "karabiner-elements"      # Password
   "meld"
   "numi"
   "squeak"

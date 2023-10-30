@@ -25,6 +25,9 @@ with pkgs; [
   dejavu_fonts
   ffmpeg-full
   fd
+
+  # Fonts
+  fira-mono
   font-awesome
   glow
   hack-font
