@@ -152,7 +152,6 @@
 
   # Good to have communication
   "discord"
-  "keybase"
   "telegram"
   "zoom"
 
