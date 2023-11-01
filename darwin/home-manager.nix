@@ -38,6 +38,7 @@ in
     brews = [
       "src-cli"
       "grab-kit"
+      "clang-format"
     ];
     casks = pkgs.callPackage ./casks.nix {};
 

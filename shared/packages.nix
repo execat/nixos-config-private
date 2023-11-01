@@ -30,7 +30,9 @@ with pkgs; [
   curl
   fasd
   pstree
+  tokei
   tree
+  unixtools.watch
   wget
   zsh-powerlevel10k
 
@@ -43,11 +45,13 @@ with pkgs; [
   go-outline
   gopkgs
   protobuf
+  grpc-gateway
   protoc-gen-go
   protoc-gen-go-grpc
   go-bindata
   go-swagger
-  
+  go-mockery
+  gum
 
   ## Grab essentials
   lab

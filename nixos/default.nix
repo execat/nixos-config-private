@@ -275,7 +275,7 @@ let user = "anuj.more";
   # @todo: submit startupTimeout option PR to nixpkgs
   services.emacs = {
     enable = true;
-    package = pkgs.emacs;
+    package = pkgs.emacs29;
   };
 
   # @todo: submit feather-font PR to nixpkgs

@@ -95,7 +95,10 @@ let name = "Anuj More";
 
   direnv.enable = true;
 
-  emacs.enable = true;
+  emacs = {
+    enable = true;
+    package = pkgs.emacs29;
+  };
 
   eza = {
     enable = true;
@@ -198,8 +201,6 @@ let name = "Anuj More";
   # nix-index.enable = true;
 
   noti.enable = true;
-
-  pazi.enable = true;
 
   pet.enable = true;
 
@@ -489,5 +490,12 @@ let name = "Anuj More";
       # Always color ls and group directories
       alias ls='ls --color=auto'
     '';
+  };
+
+  zoxide = {
+    enable = true;
+    options = [
+      "--cmd j"
+    ];
   };
 }
