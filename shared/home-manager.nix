@@ -202,7 +202,7 @@ let name = "Anuj More";
     withRuby = true;
   };
 
-  # nix-index.enable = true;
+  nix-index.enable = true;
 
   noti.enable = true;
 

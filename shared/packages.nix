@@ -7,6 +7,7 @@ with pkgs; [
   aspellDicts.en
   bash-completion
   coreutils findutils moreutils
+  # gnused
   gcc
   neofetch
   openssh
@@ -36,8 +37,13 @@ with pkgs; [
   tokei
   tree
   unixtools.watch
+  watchman
   wget
   zsh-powerlevel10k
+
+  # Nix
+  nix-index
+  comma
 
   # Programming
   ## Go
@@ -55,6 +61,9 @@ with pkgs; [
   go-swagger
   go-mockery
   gum
+
+  # Linters
+  shellcheck
 
   ## Grab essentials
   lab
