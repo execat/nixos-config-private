@@ -45,6 +45,8 @@ with pkgs; [
   tokei
   tree
   wget
+  unixtools.watch
+  wget
   zsh-powerlevel10k
 
   # Languages: Practical

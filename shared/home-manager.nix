@@ -145,6 +145,7 @@ let name = "Anuj More";
       
       core = { 
         # fsmonitor = true;
+        editor = pkgs.vim;
         autocrlf = "input";
       };
       feature.manyFiles = true;
@@ -278,7 +279,7 @@ let name = "Anuj More";
       }
     ];
     terminal = "screen-256color";
-    prefix = "C-a";
+    prefix = "C-x";
     escapeTime = 10;
     historyLimit = 50000;
     extraConfig = ''
