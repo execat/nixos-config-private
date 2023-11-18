@@ -17,6 +17,9 @@ with pkgs; [
   dejavu_fonts
   ffmpeg
   fd
+
+  # Fonts
+  fira-mono
   font-awesome
   glow
   hack-font
@@ -61,5 +64,5 @@ with pkgs; [
 
   ## Python packages
   python311
-  python311Packages.virtualenv
+  pipenv
 ]

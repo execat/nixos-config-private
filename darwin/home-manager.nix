@@ -26,8 +26,6 @@ in
       upgrade = true;
     };
     taps = [
-      # "homebrew/core"
-      # "homebrew/cask"
       "sourcegraph/src-cli"
       {
         name = "flip/homebrew";
