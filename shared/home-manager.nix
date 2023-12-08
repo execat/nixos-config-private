@@ -181,6 +181,21 @@ let name = "Anuj More";
     enable = true;
   };
 
+  mercurial = {
+    enable = true;
+    aliases = {};
+    ignores = [
+      "*~"
+      "*.swp"
+      "*.swo"
+      ".bundle"
+      "zeus.json"
+      ".DS_Store"
+    ];
+    userEmail = "test@example.com";
+    userName = "Test Tester";
+  };
+
   navi = {
     enable = true;
     settings = {
