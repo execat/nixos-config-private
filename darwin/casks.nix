@@ -7,6 +7,7 @@
   # Development Tools
   "devdocs"
   "goland"
+  "racket"
   "utm"
   "visual-studio-code"
 
@@ -23,6 +24,8 @@
   "meetingbar"
   "menumeters"
   "raycast"
+
+  "whatsapp"
 
   # Database Tools
   "dbeaver-community"

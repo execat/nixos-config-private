@@ -105,13 +105,11 @@ let user = "anuj.more"; in
       };
 
       finder = {
-       _FXShowPosixPathInTitle = true;
+        _FXShowPosixPathInTitle = true;
         AppleShowAllExtensions = true;
         FXPreferredViewStyle = "clmv";
         FXEnableExtensionChangeWarning = false;
         QuitMenuItem = true;
-        DisableAllAnimations = true;
-        WarnOnEmptyTrash = false;
       };
 
       trackpad = {

@@ -145,7 +145,7 @@ let name = "Anuj More";
       
       core = { 
         # fsmonitor = true;
-        editor = pkgs.vim;
+        editor = "vim";
         autocrlf = "input";
       };
       feature.manyFiles = true;

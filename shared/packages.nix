@@ -62,6 +62,10 @@ with pkgs; [
   go-mockery
   gum
 
+  ## Clojure
+  leiningen
+  babashka
+
   # Linters
   shellcheck
 
