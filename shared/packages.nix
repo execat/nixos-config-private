@@ -58,6 +58,7 @@ with pkgs; [
   nodePackages.typescript-language-server
   pipenv
   python311
+  virtualenv
 
   # Languages: Practical: Rust
   # rustup
@@ -96,6 +97,7 @@ with pkgs; [
   nginx
 
   # Ruby
+  libyaml
   ruby_3_2
   rubyPackages_3_2.pry
   rubyPackages_3_2.parallel
@@ -103,6 +105,8 @@ with pkgs; [
   rubyPackages_3_2.awesome_print
   rubyPackages_3_2.rest-client
 
-  graphviz
   cachix
+  entr
+  graphviz
+  watch
 ]

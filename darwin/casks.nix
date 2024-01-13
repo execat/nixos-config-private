@@ -38,6 +38,7 @@
   "keka"
   "keepingyouawake"
   "launchrocket"
+  "logseq"
   "lulu"
   # "mas"
   "meetingbar"
@@ -56,10 +57,11 @@
 
   # Essential communication
   "element"
-  "nordvpn"
+  "purevpn"
   "thunderbird"
   "wechat"
   "sunnyyoung/repo/wechattweak-cli"
+  "whatsapp"
 
   # Media
   "audacity"
