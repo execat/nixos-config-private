@@ -98,12 +98,12 @@ with pkgs; [
 
   # Ruby
   libyaml
-  ruby_3_2
-  rubyPackages_3_2.pry
-  rubyPackages_3_2.parallel
-  rubyPackages_3_2.rails
-  rubyPackages_3_2.awesome_print
-  rubyPackages_3_2.rest-client
+  ruby_3_3
+  rubyPackages_3_3.pry
+  rubyPackages_3_3.parallel
+  rubyPackages_3_3.rails
+  rubyPackages_3_3.awesome_print
+  rubyPackages_3_3.rest-client
 
   cachix
   entr

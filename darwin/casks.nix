@@ -13,28 +13,28 @@
   "beaker-browser"
   "ipfs"
   "lagrange"        # Finger, Gopher, Gemini
-  # "tor-browser"
+  "tor-browser"
 
   # Hardware support
-  # "logitech-options"
+  "logitech-options" # Password
   "mos"
   "plover"
   "zsa-wally"
 
   # Security
-  # "gpg-suite"
+  "gpg-suite"
   # "yubico-yubikey-manager"
   # "yubico-yubikey-personalization-gui"
   # "yubico-yubikey-piv-manager"
 
   # Essential utils
-  "adobe-digital-editions"
+  # "adobe-digital-editions"
   "balenaetcher"
   # "clover-configurator"
   "diffmerge"
   "dropbox"
   "flux"
-  "google-earth-pro"
+  "google-earth-pro" # Password
   "keka"
   "keepingyouawake"
   "launchrocket"
@@ -57,7 +57,7 @@
 
   # Essential communication
   "element"
-  "purevpn"
+  "purevpn"  # Password
   "thunderbird"
   "wechat"
   "sunnyyoung/repo/wechattweak-cli"
@@ -78,24 +78,20 @@
   "shotcut"
 
   # Programming
-  "github"
-  "utm"
-
   # Languages
-  # "racket"
+  "racket"
 
   # Devices
   "android-file-transfer"
   "android-platform-tools"
 
   # IDE
-  # "anaconda"
   "android-studio"
   "gdevelop"
   "hex-fiend"
   "livebook"
   "pharo-project/pharo/pharo-launcher"          # Smalltalk environment
-  "r"
+  "r"     # Password
   "rstudio"
   "sublime-text"
   "textmate"
@@ -104,16 +100,15 @@
   # RestClient
   # "cocoarestclient"
   # "http-toolkit"
-  # "insomnia"
-  # "postman"
 
   # Task maanger
   "anki"
+  "logseq"
   "notion"
   "nvalt"                   # Notational Velocity
 
   # Book
-  # "calibre"
+  "calibre"
   # "pdf-expert" # Paid with trial for editing PDFs
   "sigil" # Epub editor
   # "ultimate" # Paid with trial
@@ -121,27 +116,23 @@
   # Drawing
   "krita"
   "inkscape"
-  "pinta"                   # Password
-  "mono-mdk"
   "xournal-plus-plus"
 
   # Animation
   "blender"
   "gimp"
-  "opentoonz"
+  "opentoonz"  # Password
   "pencil2d"
   "synfigstudio"
 
   # Nice to have utils
   "angry-ip-scanner"
   "arduino"
-  # "background-music"
   "calibre"
   "charles"
   "docker"
   # "deeper"
   "devdocs"
-  # "google-earth-pro"
   "kap"
   "karabiner-elements"      # Password
   "meld"
@@ -150,7 +141,7 @@
   "tomighty"
   "suspicious-package"
   "vienna"
-  "xquartz"
+  "xquartz"         # Password
 
   # Good to have communication
   "discord"
@@ -161,7 +152,7 @@
   # Considered repetier-host, slic3r, wings3d
   "ultimaker-cura"
   "openscad"
-  "kicad"
+  "kicad"   # Password
 
   # Games
   # "0-ad"

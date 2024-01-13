@@ -34,6 +34,6 @@ let
   };
 
   ".config/amethyst/amethyst.yml" = {
-    text = builtins.readFile ./config/amethyst.yml;
+    text = builtins.readFile ../shared/config/amethyst.yml;
   };
 }
