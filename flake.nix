@@ -4,8 +4,8 @@
 
   inputs = {
     nixpkgs = {
-      # This revision: 26th Sept 02:46
-      url = "github:nixos/nixpkgs?rev=e42717254714b9d312d1e4f15332952848fac3eb";
+      # This revision: 14th Jan 0150
+      url = "github:nixos/nixpkgs?rev=eabe8d3eface69f5bb16c18f8662a702f50c20d5";
     };
     agenix.url = "github:ryantm/agenix";
     home-manager.url = "github:nix-community/home-manager";

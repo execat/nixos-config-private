@@ -133,6 +133,7 @@
   "docker"
   # "deeper"
   "devdocs"
+  "iterm2"
   "kap"
   "karabiner-elements"      # Password
   "meld"

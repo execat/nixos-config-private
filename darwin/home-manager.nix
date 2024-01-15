@@ -102,10 +102,8 @@ in
   # Fully declarative dock using the latest from Nix Store
   local.dock.enable = true;
   local.dock.entries = [
-    { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
     { path = "/Applications/Firefox.app/"; }
     { path = "/Applications/Thunderbird.app/"; }
-    { path = "/Applications/UTM.app/"; }
     { path = "/Applications/Visual Studio Code.app/"; }
     { path = "/System/Applications/System Settings.app/"; }
     {
