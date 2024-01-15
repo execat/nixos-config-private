@@ -2,11 +2,12 @@
 
 with pkgs; [
   # General packages for development and system management
-  alacritty
   aspell
   aspellDicts.en
   bash-completion
-  coreutils findutils moreutils
+  coreutils
+  findutils
+  moreutils
   gcc
   neofetch
   openssh

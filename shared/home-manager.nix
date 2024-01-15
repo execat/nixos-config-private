@@ -5,7 +5,7 @@ let name = "Anuj More";
     email = "anujmorex@gmail.com"; in
 {
   alacritty = {
-    enable = true;
+    enable = false; # Disable Alacritty for now, issue on x86-64
     settings = {
       cursor = {
         style = "Block";
