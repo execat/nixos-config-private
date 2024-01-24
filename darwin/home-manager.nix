@@ -77,7 +77,7 @@ in
     { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
     { path = "/Applications/Firefox.app/"; }
     { path = "/Applications/Google Chrome.app"; }
-    { path = "/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app"; }
+    { path = "/Applications/Cisco/Cisco Secure Client.app"; }
     { path = "/Applications/zoom.us.app"; }
     { path = "/Applications/GoLand.app"; }
     { path = "/Applications/UTM.app"; }

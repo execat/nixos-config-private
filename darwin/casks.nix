@@ -18,6 +18,7 @@
   "amethyst"
   "flux"
   "kap"
+  "karabiner-elements"
   "keka"
   "keepingyouawake"
   "lulu"

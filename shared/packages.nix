@@ -14,6 +14,21 @@ with pkgs; [
   sqlite
   wget
 
+  # Ocaml
+  ocaml
+  opam
+  dune_3
+  dune-release
+  ocamlPackages.merlin
+  ocamlPackages.ocaml-lsp
+  ocamlPackages.odoc
+  ocamlPackages.ocamlformat
+  ocamlPackages.utop
+
+  # Elm
+  ghc
+  elmPackages.elm
+
   # Media-related packages
   dejavu_fonts
   ffmpeg
@@ -49,6 +64,7 @@ with pkgs; [
   ## Go
   go_1_21
   gotools
+  gci
   golangci-lint
   gopls
   go-outline
