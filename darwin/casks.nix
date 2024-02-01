@@ -21,7 +21,6 @@
   "karabiner-elements"
   "keka"
   "keepingyouawake"
-  "lulu"
   "meetingbar"
   "menumeters"
   "raycast"

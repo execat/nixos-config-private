@@ -14,17 +14,6 @@ with pkgs; [
   sqlite
   wget
 
-  # Ocaml
-  ocaml
-  opam
-  dune_3
-  dune-release
-  ocamlPackages.merlin
-  ocamlPackages.ocaml-lsp
-  ocamlPackages.odoc
-  ocamlPackages.ocamlformat
-  ocamlPackages.utop
-
   # Elm
   ghc
   elmPackages.elm

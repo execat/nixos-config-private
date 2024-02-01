@@ -47,7 +47,7 @@ let user = "anuj.more"; in
 
     defaults = {
       LaunchServices = {
-        LSQuarantine = false;
+        # LSQuarantine = false;
       };
 
       menuExtraClock = {

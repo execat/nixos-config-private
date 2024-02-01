@@ -4,8 +4,9 @@
 
   inputs = {
     nixpkgs = {
-      # This revision: 27th Sept 2023, 1945
-      url = "github:nixos/nixpkgs?rev=ec68439bdc77ee684a4b2846f03677c5c50920a9";
+      # This revision: 1st Feb 2024
+      # From branch: nixpkgs-23.11-darwin
+      url = "github:nixos/nixpkgs?rev=4a0b900ff0150057e6d564ff3cd2b3ac9cd1eec1";
     };
     home-manager.url = "github:nix-community/home-manager";
     darwin = {
