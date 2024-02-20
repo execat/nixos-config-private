@@ -481,16 +481,13 @@ let name = "Anuj More";
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
         . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
       fi
+      export GOPATH=$HOME/.gopath
+      export GOBIN="$HOME/.gopath/bin"
+      export PROTO_PATH=${pkgs.protobuf}
+      export PATH=$PATH:$GOBIN:$PROTO_PATH/bin
 
       # Define variables for directories
-      export PATH=$PATH:/opt/homebrew/bin
-      export PATH=$HOME/.local/share/bin:$PATH
-      export PATH=$HOME/bin:$PATH
-
-      export GOPATH=$HOME/gopath
-      export GOBIN="$HOME/gopath/bin"
-      export PROTO_PATH=${pkgs.protobuf}
-      export PATH=$PATH:$PROTO_PATH/bin
+      export PATH=$HOME/bin:$HOME/.config/emacs.doom/bin:/opt/homebrew/bin:$HOME/.local/share/bin:$PATH
 
       export HOMEBREW_NO_ANALYTICS=1
 

@@ -8,6 +8,8 @@
   "bitwarden"
   "firefox"
   "google-chrome"
+  "waterfox"        # Fx clone
+  "floorp"          # Fx clone
 
   # Alternative browsers
   "beaker-browser"
@@ -66,6 +68,7 @@
   # Media
   "audacity"
   "iina"
+  "foobar2000"
   "kodi"
   # "mpv"
   "smplayer"
@@ -130,6 +133,7 @@
   "arduino"
   "calibre"
   "charles"
+  "disk-inventory-x"
   "docker"
   # "deeper"
   "devdocs"
@@ -138,6 +142,7 @@
   "karabiner-elements"      # Password
   "meld"
   "numi"
+  "ollama"
   "squeak"
   "tomighty"
   "suspicious-package"
