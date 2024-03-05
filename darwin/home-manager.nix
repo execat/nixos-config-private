@@ -20,10 +20,16 @@ in
 
   homebrew = {
     enable = true;
+    global = {
+      brewfile = true;
+    };
     onActivation = {
       autoUpdate = true;
       cleanup = "zap";
       upgrade = true;
+      extraFlags = [
+        "--force"
+      ];
     };
     taps = [
       "sourcegraph/src-cli"
@@ -37,7 +43,10 @@ in
       "src-cli"
       "grab-kit"
       "clang-format"
+
+      "ruby"
     ];
+
     casks = pkgs.callPackage ./casks.nix {};
 
     # These app IDs are from using the mas CLI app

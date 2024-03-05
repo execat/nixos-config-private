@@ -1,4 +1,3 @@
-
 {
   description = "Starter Configuration for NixOS and MacOS";
 

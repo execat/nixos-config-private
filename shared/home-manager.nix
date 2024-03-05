@@ -489,7 +489,7 @@ let name = "Anuj More";
       fi
 
       # Define variables for directories
-      export PATH=$PATH:/opt/homebrew/bin
+      export PATH=/opt/homebrew/bin:$PATH
       export PATH=$HOME/.local/share/bin:$PATH
       export PATH=$HOME/bin:$PATH
 

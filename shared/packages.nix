@@ -48,6 +48,7 @@ with pkgs; [
   # Nix
   nix-index
   comma
+  nil
 
   # Programming
   ## Go

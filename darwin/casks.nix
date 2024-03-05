@@ -17,7 +17,6 @@
   # Essential Tools
   "amethyst"
   "flux"
-  "kap"
   "karabiner-elements"
   "keka"
   "keepingyouawake"
