@@ -144,7 +144,6 @@ let name = "Anuj More";
       init.defaultBranch = "dev";
       
       core = { 
-        # fsmonitor = true;
         editor = "vim";
         autocrlf = "input";
       };

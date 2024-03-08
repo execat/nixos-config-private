@@ -52,7 +52,7 @@ with pkgs; [
 
   # Programming
   ## Go
-  go_1_21
+  go_1_22
   gotools
   gci
   golangci-lint
