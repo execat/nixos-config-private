@@ -93,7 +93,10 @@ let name = "Anuj More";
 
   broot.enable = true;
 
-  direnv.enable = true;
+  direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   emacs = {
     enable = true;
@@ -496,6 +499,13 @@ let name = "Anuj More";
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
+
+      # Emacs aliases
+      alias emacs-default='emacs --with-profile default'
+
+      alias emacs-clean='emacs --with-profile clean'
+      alias emacs-clojure='emacs --with-profile clojure'
+      alias emacs-doom='emacs --with-profile doom'
     '';
   };
 
