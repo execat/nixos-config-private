@@ -9,9 +9,12 @@
       url = "github:nixos/nixpkgs?rev=f945939fd679284d736112d3d5410eb867f3b31c";
     };
     agenix.url = "github:ryantm/agenix";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     darwin = {
-      url = "github:execat/nix-darwin/master";
+      url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew = {
@@ -24,7 +27,7 @@
     homebrew-cask = {
       url = "github:homebrew/homebrew-cask";
       flake = false;
-    }; 
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

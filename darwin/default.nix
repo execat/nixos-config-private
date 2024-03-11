@@ -122,8 +122,8 @@ let user = "atm"; in
         FXPreferredViewStyle = "clmv";
         FXEnableExtensionChangeWarning = false;
         QuitMenuItem = true;
-        DisableAllAnimations = true;
-        WarnOnEmptyTrash = false;
+        # DisableAllAnimations = true;
+        # WarnOnEmptyTrash = false;
       };
 
       smb = {
