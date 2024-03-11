@@ -20,4 +20,11 @@
   ".config/amethyst/amethyst.yml" = {
     text = builtins.readFile ../shared/config/amethyst.yml;
   };
+
+  ".bundle/config" = {
+    text = ''
+      ---
+      BUNDLE_PATH: .bundle
+    '';
+  };
 }
