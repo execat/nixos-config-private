@@ -3,9 +3,9 @@
 
   inputs = {
     nixpkgs = {
-      # This revision: 6th Mar 2024
+      # This revision: 1st Apr 2024
       # From branch: nixpkgs-unstable
-      url = "github:nixos/nixpkgs?rev=9052a2666b6292fced270a2264776c203442fbe1";
+      url = "github:nixos/nixpkgs?rev=807c549feabce7eddbf259dbdcec9e0600a0660d";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
