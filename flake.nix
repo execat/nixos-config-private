@@ -8,7 +8,9 @@
       # Branch: nixpkgs-unstable
       url = "github:nixos/nixpkgs?rev=f945939fd679284d736112d3d5410eb867f3b31c";
     };
-    agenix.url = "github:ryantm/agenix";
+    agenix = {
+      url = "github:ryantm/agenix";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

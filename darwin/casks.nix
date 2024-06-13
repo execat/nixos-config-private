@@ -30,9 +30,7 @@
   # "yubico-yubikey-piv-manager"
 
   # Essential utils
-  # "adobe-digital-editions"
   "balenaetcher"
-  # "clover-configurator"
   "diffmerge"
   "dropbox"
   "flux"
@@ -94,8 +92,6 @@
   "hex-fiend"
   "livebook"
   "pharo-project/pharo/pharo-launcher"          # Smalltalk environment
-  "r"     # Password
-  "rstudio"
   "sublime-text"
   "textmate"
   "visual-studio-code"
@@ -124,9 +120,9 @@
   # Animation
   "blender"
   "gimp"
-  "opentoonz"  # Password
-  "pencil2d"
-  "synfigstudio"
+  # "opentoonz"  # Password
+  # "pencil2d"
+  # "synfigstudio"
 
   # Nice to have utils
   "angry-ip-scanner"
@@ -142,7 +138,7 @@
   "karabiner-elements"      # Password
   "meld"
   "numi"
-  "ollama"
+  # "ollama"
   "squeak"
   "tomighty"
   "suspicious-package"
@@ -157,15 +153,15 @@
   # 3D printing
   # Considered repetier-host, slic3r, wings3d
   "ultimaker-cura"
-  "openscad"
-  "kicad"   # Password
+  # "openscad"
+  # "kicad"   # Password
 
   # Games
   # "0-ad"
   # "chessx"
-  "minecraft"
-  "openttd"
-  "openrct2"
-  "steam"
-  "widelands"
+  # "minecraft"
+  # "openttd"
+  # "openrct2"
+  # "steam"
+  # widelands"
 ]

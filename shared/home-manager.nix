@@ -105,7 +105,6 @@ let name = "Anuj More";
 
   eza = {
     enable = true;
-    enableAliases = true;
     extraOptions = [
       "--group-directories-first"
       "--header"
