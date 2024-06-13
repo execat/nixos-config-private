@@ -19,7 +19,7 @@ with pkgs; [
   age-plugin-yubikey
   gnupg
   libfido2
-  pinentry
+  # pinentry
   yubikey-manager
 
   # Media-related packages

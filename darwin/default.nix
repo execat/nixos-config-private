@@ -18,7 +18,7 @@ let user = "atm"; in
 
   # Setup user, packages, programs
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     settings.trusted-users = [ "@admin" "${user}" ];
 
     gc = {
@@ -30,7 +30,7 @@ let user = "atm"; in
 
     # Turn this on to make command line easier
     extraOptions = ''
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes auto-allocate-uids
     '';
   };
 
