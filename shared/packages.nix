@@ -52,8 +52,10 @@ with pkgs; [
 
   # Languages: Practical
   elixir
+  elixir-ls
   go
   haskellPackages.ghc
+  haskellPackages.lsp
   nodejs
   nodePackages.typescript
   nodePackages.typescript-language-server
@@ -73,10 +75,15 @@ with pkgs; [
   # Languages: Learning
   chez
   elmPackages.elm
+  elmPackages.elm-language-server
   erlang
+  erlang-ls
   leiningen
+  clojure-lsp
   lua5_4
+  lua-language-server
   nil # Nix
+  sbcl
   swiProlog
   yarn
   stack # Use ghc using "stack ghci"
@@ -105,6 +112,7 @@ with pkgs; [
   rubyPackages_3_3.rails
   rubyPackages_3_3.awesome_print
   rubyPackages_3_3.rest-client
+  rubyPackages_3_3.ruby-lsp
 
   cachix
   entr

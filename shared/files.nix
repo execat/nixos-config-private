@@ -11,13 +11,6 @@
     text = builtins.readFile ../shared/config/emacs/init.el;
   };
 
-  ".config/emacs.doom".source = pkgs.fetchFromGitHub {
-     owner = "doomemacs";
-     repo = "doomemacs";
-     rev = "813c961";
-     sha256 = "sha256-N2pwgbWI5cbTJETt0umoM+a+Exh6REcjWIEE3YOEogI=";
-  };
-
   # Home directory files
   ".emacs.d".source = pkgs.fetchFromGitHub {
      owner = "plexus";
