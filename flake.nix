@@ -1,12 +1,11 @@
-
 {
   description = "Starter Configuration for NixOS and MacOS";
 
   inputs = {
     nixpkgs = {
-      # This revision: 14th Jun 2024
-      # Branch: nixpkgs-unstable
-      url = "github:nixos/nixpkgs?rev=e913ae340076bbb73d9f4d3d065c2bca7caafb16";
+      # This revision: 4th Jan 2024
+      # Branch: nixpkgs-unstable: https://github.com/NixOS/nixpkgs/tree/nixpkgs-unstable
+      url = "github:nixos/nixpkgs?rev=d6973081434f88088e5321f83ebafe9a1167c367";
     };
     agenix = {
       url = "github:ryantm/agenix";

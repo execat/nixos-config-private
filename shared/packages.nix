@@ -11,8 +11,8 @@ with pkgs; [
   gcc
   neofetch
   openssh
+  rlwrap
   sqlite
-  wget
 
   # Encryption and security tools
   age
@@ -35,33 +35,47 @@ with pkgs; [
   jetbrains-mono
   meslo-lgs-nf
 
-  # Node.js development tools
-  nodejs
-
   # Categorize later
-  curl
+  curl wget
   cmake libtool
   fasd
   pstree
   tokei
   tree
-  wget
   unixtools.watch
-  wget
   zsh-powerlevel10k
 
   # Languages: Practical
-  elixir
-  elixir-ls
+  beam27Packages.elixir
+  beam27Packages.elixir-ls
+  beam27Packages.erlang
+  beam27Packages.erlang-ls
   go
   haskellPackages.ghc
   haskellPackages.lsp
+  stack # Use ghc using "stack ghci"
+
+  # Languages: Practical: Node.js development tools
   nodejs
   nodePackages.typescript
   nodePackages.typescript-language-server
+  yarn
+
+  # Languages: Practical: Python
   pipenv
-  python311
-  virtualenv
+  python313
+  python313Packages.poetry-core
+  python313Packages.virtualenv
+
+  # Languages: Practical: Ruby
+  libyaml
+  ruby_3_4
+  rubyPackages_3_4.pry
+  rubyPackages_3_4.parallel
+  rubyPackages_3_4.rails
+  rubyPackages_3_4.awesome_print
+  rubyPackages_3_4.rest-client
+  rubyPackages_3_4.ruby-lsp
 
   # Languages: Practical: Rust
   # rustup
@@ -72,27 +86,23 @@ with pkgs; [
   # evcxr # Use it by calling `nix-shell -p '[libiconv rust-analyzer rustfmt clippy evcxr]'`
   wabt
 
-  # Languages: Learning
+  # Languages: Learning: Lisps
   chez
+  clojure-lsp
+  leiningen
+  sbcl
+
+  # Languages: Learning
   elmPackages.elm
   elmPackages.elm-language-server
-  erlang
-  erlang-ls
-  leiningen
-  clojure-lsp
   lua5_4
   lua-language-server
   nil # Nix
-  sbcl
-  swiProlog
-  yarn
-  stack # Use ghc using "stack ghci"
   opam
+  swi-prolog
 
   # SCM
   git
-
-  # SCM alternatives
   fossil
   mercurial
 
@@ -104,18 +114,7 @@ with pkgs; [
   darkhttpd
   nginx
 
-  # Ruby
-  libyaml
-  ruby_3_3
-  rubyPackages_3_3.pry
-  rubyPackages_3_3.parallel
-  rubyPackages_3_3.rails
-  rubyPackages_3_3.awesome_print
-  rubyPackages_3_3.rest-client
-  rubyPackages_3_3.ruby-lsp
-
   cachix
   entr
   graphviz
-  watch
 ]

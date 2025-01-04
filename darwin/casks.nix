@@ -88,6 +88,7 @@
 
   # IDE
   "android-studio"
+  "cursor"
   "gdevelop"
   "hex-fiend"
   "livebook"
