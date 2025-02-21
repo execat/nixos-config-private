@@ -11,18 +11,15 @@ let user = "atm"; in
      agenix.darwinModules.default
   ];
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-
   security.pam.enableSudoTouchIdAuth = true;
 
   # Setup user, packages, programs
   nix = {
     package = pkgs.nixVersions.latest;
     settings.trusted-users = [ "@admin" "${user}" ];
+    enable = true;
 
     gc = {
-      user = "root";
       automatic = true;
       interval = { Weekday = 0; Hour = 2; Minute = 0; };
       options = "--delete-older-than 30d";
@@ -41,9 +38,6 @@ let user = "atm"; in
   environment.systemPackages = with pkgs; [
     agenix.packages."${pkgs.system}".default
   ] ++ (import ../shared/packages.nix { inherit pkgs; });
-
-  # Enable fonts dir
-  fonts.fontDir.enable = true;
 
   networking = {
     hostName = "goyang";

@@ -3,9 +3,9 @@
 
   inputs = {
     nixpkgs = {
-      # This revision: 4th Jan 2024
+      # This revision: 21st Feb 2025
       # Branch: nixpkgs-unstable: https://github.com/NixOS/nixpkgs/tree/nixpkgs-unstable
-      url = "github:nixos/nixpkgs?rev=d6973081434f88088e5321f83ebafe9a1167c367";
+      url = "github:nixos/nixpkgs?rev=632f04521e847173c54fa72973ec6c39a371211c";
     };
     agenix = {
       url = "github:ryantm/agenix";

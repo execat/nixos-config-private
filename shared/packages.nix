@@ -46,12 +46,10 @@ with pkgs; [
   zsh-powerlevel10k
 
   # Languages: Practical
-  beam27Packages.elixir
-  beam27Packages.elixir-ls
-  beam27Packages.erlang
-  beam27Packages.erlang-ls
+  elixir
+  elixir-ls
   go
-  haskellPackages.ghc
+  ghc
   haskellPackages.lsp
   stack # Use ghc using "stack ghci"
 
@@ -109,6 +107,11 @@ with pkgs; [
   # Web
   lynx
   w3m
+
+  # Shortcuts
+  raycast
+  leader-key
+  doughnut
 
   # Servers
   darkhttpd

@@ -116,6 +116,7 @@
   # Drawing
   "krita"
   "inkscape"
+  "pinta"
   "xournal-plus-plus"
 
   # Animation
@@ -139,11 +140,14 @@
   "karabiner-elements"      # Password
   "meld"
   "numi"
-  # "ollama"
+  "purevpn"
+  "sigil"
   "squeak"
-  "tomighty"
   "suspicious-package"
+  "tomighty"
+  "utm"
   "vienna"
+  "xournal++"
   "xquartz"         # Password
 
   # Good to have communication
@@ -156,6 +160,11 @@
   "ultimaker-cura"
   # "openscad"
   # "kicad"   # Password
+
+  # AI
+  "cursor"
+  "jan"
+  "ollama"
 
   # Games
   # "0-ad"

@@ -110,7 +110,7 @@ let name = "Anuj More";
       "--header"
     ];
     git = true;
-    icons = true;
+    icons = "auto";
   };
 
   fzf.enable = true;
@@ -212,22 +212,6 @@ let name = "Anuj More";
 
   ripgrep.enable = true;
 
-  sioyek = {
-    enable = true;
-    bindings = {
-      "move_up" = "k";
-      "move_down" = "j";
-      "move_left" = "h";
-      "move_right" = "l";
-      "screen_down" = [ "J" "<C-d>" ];
-      "screen_up" = [ "K" "<C-u>" ];
-    };
-    config = {
-      "background_color" = "1.0 1.0 1.0";
-      "text_highlight_color" = "1.0 0.0 0.0";
-    };
-  };
-
   ssh = {
     enable = true;
 
@@ -245,6 +229,19 @@ let name = "Anuj More";
         ''
           IdentityFile /Users/${user}/.ssh/github
         '')
+      ''
+        Host server
+          Hostname 143.198.86.252
+          IdentitiesOnly yes
+          IdentityFile /Users/atm/.ssh/digitalocean
+          PubKeyAuthentication yes
+
+        Host server-api
+          Hostname api.blahblah.sg
+          IdentitiesOnly yes
+          IdentityFile /Users/atm/.ssh/digitalocean
+          PubKeyAuthentication yes
+      ''
     ];
   };
 
