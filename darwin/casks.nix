@@ -1,9 +1,6 @@
 {}:
 
 [
-  # WM
-  "amethyst"
-
   # Browsers
   "bitwarden"
   "firefox"
@@ -29,6 +26,16 @@
   # "yubico-yubikey-personalization-gui"
   # "yubico-yubikey-piv-manager"
 
+  # Setup
+  "amethyst"
+  "doughnut"
+  "iterm2"
+  "karabiner-elements"      # Password
+  "keepingyouawake"
+  "leader-key"
+  "menumeters"
+  "raycast"
+
   # Essential utils
   "balenaetcher"
   "diffmerge"
@@ -36,14 +43,11 @@
   "flux"
   "google-earth-pro" # Password
   "keka"
-  "keepingyouawake"
   "launchrocket"
   "logseq"
   "lulu"
   # "mas"
   "meetingbar"
-  "menumeters"
-  "raycast"
   "smcfancontrol"
   "spaceradar"
 
@@ -135,9 +139,7 @@
   "docker"
   # "deeper"
   "devdocs"
-  "iterm2"
   "kap"
-  "karabiner-elements"      # Password
   "meld"
   "numi"
   "purevpn"

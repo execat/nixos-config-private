@@ -108,11 +108,6 @@ with pkgs; [
   lynx
   w3m
 
-  # Shortcuts
-  raycast
-  leader-key
-  doughnut
-
   # Servers
   darkhttpd
   nginx
