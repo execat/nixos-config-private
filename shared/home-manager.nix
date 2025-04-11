@@ -100,7 +100,7 @@ let name = "Anuj More";
 
   emacs = {
     enable = true;
-    package = pkgs.emacs29;
+    package = pkgs.emacs;
   };
 
   eza = {

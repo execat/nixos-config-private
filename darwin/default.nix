@@ -11,7 +11,7 @@ let user = "atm"; in
      agenix.darwinModules.default
   ];
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Setup user, packages, programs
   nix = {

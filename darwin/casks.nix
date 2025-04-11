@@ -5,6 +5,7 @@
   "bitwarden"
   "firefox"
   "google-chrome"
+  "librewolf"
   "waterfox"        # Fx clone
   "floorp"          # Fx clone
 
@@ -131,6 +132,7 @@
   # "synfigstudio"
 
   # Nice to have utils
+  "anytype"
   "angry-ip-scanner"
   "arduino"
   "calibre"
@@ -175,5 +177,6 @@
   # "openttd"
   # "openrct2"
   # "steam"
-  # widelands"
+  # "widelands"
+  "openemu"
 ]

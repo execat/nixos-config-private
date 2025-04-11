@@ -60,7 +60,7 @@ with pkgs; [
   yarn
 
   # Languages: Practical: Python
-  pipenv
+  uv
   python313
   python313Packages.poetry-core
   python313Packages.virtualenv
@@ -70,7 +70,6 @@ with pkgs; [
   ruby_3_4
   rubyPackages_3_4.pry
   rubyPackages_3_4.parallel
-  rubyPackages_3_4.rails
   rubyPackages_3_4.awesome_print
   rubyPackages_3_4.rest-client
   rubyPackages_3_4.ruby-lsp
