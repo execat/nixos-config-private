@@ -5,7 +5,7 @@
   "bitwarden"
   "firefox"
   "google-chrome"
-  "librewolf"
+  "librewolf"       # Fx clone
   "waterfox"        # Fx clone
   "floorp"          # Fx clone
 

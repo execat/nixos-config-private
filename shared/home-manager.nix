@@ -489,6 +489,8 @@ let name = "Anuj More";
       export PATH=$HOME/bin:$HOME/.config/emacs.doom/bin:/opt/homebrew/bin:$HOME/.local/share/bin:$PATH
 
       export HOMEBREW_NO_ANALYTICS=1
+      export HOMEBREW_NO_ENV_HINTS=1
+      export HOMEBREW_AUTO_UPDATE_SECS=345600
 
       export EDITOR="vim"
       export VISUAL="vim"

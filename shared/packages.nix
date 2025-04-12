@@ -68,10 +68,10 @@ with pkgs; [
   # Languages: Practical: Ruby
   libyaml
   ruby_3_4
-  rubyPackages_3_4.pry
-  rubyPackages_3_4.parallel
-  rubyPackages_3_4.awesome_print
   rubyPackages_3_4.rest-client
+  rubyPackages_3_4.pry
+  rubyPackages_3_4.pry-byebug
+  rubyPackages_3_4.rubocop
   rubyPackages_3_4.ruby-lsp
 
   # Languages: Practical: Rust
