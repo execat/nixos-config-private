@@ -11,6 +11,8 @@ let user = "atm"; in
      agenix.darwinModules.default
   ];
 
+  home-manager.backupFileExtension = "nix-darwin-backup";
+
   security.pam.services.sudo_local.touchIdAuth = true;
 
   # Setup user, packages, programs

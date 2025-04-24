@@ -458,21 +458,35 @@ let name = "Anuj More";
 
   yt-dlp.enable = true;
 
+  atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    daemon.enable = true;
+
+    settings = {
+      enable_autosync = true;
+    };
+  };
+
   # Shared shell configuration
   zsh = {
     enable = true;
-    autocd = false;
-    cdpath = [ "~/.local/share/src" ];
+    autocd = true;
+    syntaxHighlighting.enable = true;
+    autosuggestion.enable = true;
     plugins = [
       {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        name = "zsh-completions";
+        src = pkgs.zsh-completions;
       }
       {
-          name = "powerlevel10k-config";
-          src = lib.cleanSource ./config;
-          file = "p10k.zsh";
+        name = "zsh-ai-commands";
+        src = pkgs.fetchFromGitHub {
+          owner = "muePatrick";
+          repo = "zsh-ai-commands";
+          rev = "main";
+          sha256 = "sha256-fBz/9aopcT/Du3nZLWm2AWLN77I+SK+TLdQjbsEX/+c=";
+        };
       }
     ];
     initExtraFirst = ''
@@ -504,7 +518,68 @@ let name = "Anuj More";
       alias emacs-clean='emacs --with-profile clean'
       alias emacs-clojure='emacs --with-profile clojure'
       alias emacs-doom='emacs --with-profile doom'
+
+      source ~/.zshrc.local
     '';
+    initExtra = ''
+      # Make Ctrl+W stop at slashes
+      autoload -U select-word-style
+      select-word-style bash
+
+      # Additional customization for word boundaries
+      WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+    '';
+  };
+
+  starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      "$schema" = "https://starship.rs/config-schema.json";
+      add_newline = true;
+      command_timeout = 3000;
+      format = "$all";
+
+      cmd_duration = {
+        min_time = 500;
+        format = "took [$duration](bold yellow)";
+      };
+
+      status = {
+        disabled = false;
+        format = "[$status]($style) ";
+        pipestatus = true;
+      };
+
+      directory = {
+        truncation_length = 0;
+        truncate_to_repo = true;
+        truncation_symbol = "…/";
+      };
+
+      git_commit = {
+        disabled = false;
+        only_detached = false;
+      };
+
+      git_metrics.disabled = false;
+
+      git_status = {
+        ahead = "⇡\${count}";
+        behind = "⇣\${count}";
+        diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
+        format = "([$all_status$ahead_behind]($style) )";
+        modified = "!\${count}";
+        staged = "+\${count}";
+        untracked = "?\${count}";
+      };
+
+      time = {
+        disabled = false;
+        style = "bold white";
+        format = "[$time]($style) ";
+      };
+    };
   };
 
   zoxide = {
