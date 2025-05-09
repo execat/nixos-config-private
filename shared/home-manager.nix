@@ -489,7 +489,7 @@ let name = "Anuj More";
         };
       }
     ];
-    initExtraFirst = ''
+    initContent = lib.mkBefore ''
       if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
         . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
@@ -519,15 +519,14 @@ let name = "Anuj More";
       alias emacs-clojure='emacs --with-profile clojure'
       alias emacs-doom='emacs --with-profile doom'
 
-      source ~/.zshrc.local
-    '';
-    initExtra = ''
       # Make Ctrl+W stop at slashes
       autoload -U select-word-style
       select-word-style bash
 
       # Additional customization for word boundaries
       WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+      source ~/.zshrc.local
     '';
   };
 

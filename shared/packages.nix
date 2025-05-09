@@ -51,7 +51,7 @@ with pkgs; [
   go
   ghc
   haskellPackages.lsp
-  stack # Use ghc using "stack ghci"
+  # stack # Use ghc using "stack ghci"
 
   # Languages: Practical: Node.js development tools
   nodejs
