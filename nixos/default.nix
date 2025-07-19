@@ -5,7 +5,6 @@ let user = "atm";
 {
   imports = [
     ./secrets.nix
-    ./disk-config.nix
     ../shared
     ../shared/cachix
     agenix.nixosModules.default
