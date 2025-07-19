@@ -3,9 +3,9 @@
 
   inputs = {
     nixpkgs = {
-      # This revision: 10th May 2025
+      # This revision: 20th July 2025
       # Branch: nixpkgs-unstable: https://github.com/NixOS/nixpkgs/tree/nixpkgs-unstable
-      url = "github:nixos/nixpkgs?rev=b3582c75c7f21ce0b429898980eddbbf05c68e55";
+      url = "github:nixos/nixpkgs?rev=8131c0ea9df6293a247be743a387ff725e464db7";
     };
     agenix = {
       url = "github:ryantm/agenix";
@@ -34,7 +34,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
-      url = "git+ssh://git@github.com/execat/nix-secrets.git"; # Change this!
+      url = "git+ssh://git@github.com/execat/nix-secrets.git";
       flake = false;
     };
   };

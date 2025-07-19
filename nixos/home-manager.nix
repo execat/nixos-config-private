@@ -6,25 +6,6 @@ let
   shared-programs = import ../shared/home-manager.nix { inherit config pkgs lib; };
   shared-files = import ../shared/files.nix { inherit config pkgs; };
 
-  polybar-user_modules = builtins.readFile (pkgs.substituteAll {
-    src = ./config/polybar/user_modules.ini;
-    packages = "${xdg_configHome}/polybar/bin/check-nixos-updates.sh";
-    searchpkgs = "${xdg_configHome}/polybar/bin/search-nixos-updates.sh";
-    launcher = "${xdg_configHome}/polybar/bin/launcher.sh";
-    powermenu = "${xdg_configHome}/rofi/bin/powermenu.sh";
-    calendar = "${xdg_configHome}/polybar/bin/popup-calendar.sh";
-  });
-
-  polybar-config = pkgs.substituteAll {
-      src = ./config/polybar/config.ini;
-      font0 = "DejaVu Sans:size=12;3";
-      font1 = "feather:size=12;3"; # dustinlyons/nixpkgs
-  };
-
-  polybar-modules = builtins.readFile ./config/polybar/modules.ini;
-  polybar-bars = builtins.readFile ./config/polybar/bars.ini;
-  polybar-colors = builtins.readFile ./config/polybar/colors.ini;
-
   # These files are generated when secrets are decrypted at build time
   gpgKeys = [
     "/home/${user}/.ssh/pgp_github.key"
@@ -46,11 +27,11 @@ in
     enable = true;
     iconTheme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
   };
 
@@ -63,14 +44,6 @@ in
 
   # Auto mount devices
   services.udiskie.enable = true;
-
-  services.polybar = {
-    enable = true;
-    config = polybar-config;
-    extraConfig = polybar-bars + polybar-colors + polybar-modules + polybar-user_modules;
-    package = pkgs.polybarFull;
-    script = "polybar main &";
-  };
 
   services.dunst = {
     enable = true;

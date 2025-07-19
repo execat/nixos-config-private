@@ -5,7 +5,7 @@ let shared-packages = import ../shared/packages.nix { inherit pkgs; }; in
 shared-packages ++ [
   # Security and authentication
   yubikey-manager
-  yubikey-manager-qt
+  yubioath-flutter
   yubikey-agent
 
   # App and package management
@@ -35,7 +35,13 @@ shared-packages ++ [
   zathura
 
   # Fonts
-  nerdfonts
+  nerd-fonts.ubuntu-mono
+  nerd-fonts.fira-code
+  nerd-fonts.fira-mono
+  nerd-fonts.hack
+  nerd-fonts.inconsolata-go
+  nerd-fonts.jetbrains-mono
+  nerd-fonts.meslo-lg
   lohit-fonts.marathi
   marathi-cursive
 ]
