@@ -49,6 +49,7 @@ let user = "atm"; in
 
   system = {
     stateVersion = 4;
+    primaryUser = user;
 
     defaults = {
       LaunchServices = {
