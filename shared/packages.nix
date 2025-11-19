@@ -87,7 +87,7 @@ with pkgs; [
   chez
   clojure-lsp
   leiningen
-  sbcl
+  # sbcl
 
   # Languages: Learning
   elmPackages.elm

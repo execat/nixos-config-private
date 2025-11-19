@@ -115,25 +115,14 @@ let name = "Anuj More";
 
   fzf.enable = true;
 
+  delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
   git = {
     enable = true;
-    userName = name;
-    userEmail = email;
-    delta.enable = true;
     lfs.enable = true;
-    aliases = {
-      st = "status";
-      ca = "commit -a";
-      br = "branch";
-      ds = "diff --staged";
-      unstage = "reset HEAD";
-      uncommit = "reset --soft HEAD^";
-      diffw = "diff --color --color-words --abbrev";
-      lp = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p";
-      sync = "remote update origin --prune";
-      pl = "merge --ff-only @{u}";
-      forget="! /usr/local/bin/git fetch -p && /usr/local/bin/git branch -vv | awk '/: gone]/{print $1}' | xargs /usr/local/bin/git branch -D";
-    };
     ignores = [
       "*~"
       "*.swp"
@@ -142,9 +131,25 @@ let name = "Anuj More";
       "zeus.json"
       ".DS_Store"
     ];
-    extraConfig = {
+    settings = {
+      user = {
+        name = name;
+        email = email;
+      };
+      alias = {
+        st = "status";
+        ca = "commit -a";
+        br = "branch";
+        ds = "diff --staged";
+        unstage = "reset HEAD";
+        uncommit = "reset --soft HEAD^";
+        diffw = "diff --color --color-words --abbrev";
+        lp = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p";
+        sync = "remote update origin --prune";
+        pl = "merge --ff-only @{u}";
+        forget = "! /usr/local/bin/git fetch -p && /usr/local/bin/git branch -vv | awk '/: gone]/{print $1}' | xargs /usr/local/bin/git branch -D";
+      };
       init.defaultBranch = "dev";
-      
       core = { 
         # fsmonitor = true;
         editor = "vim";
@@ -214,35 +219,44 @@ let name = "Anuj More";
 
   ssh = {
     enable = true;
+    enableDefaultConfig = false;
 
-    extraConfig = lib.mkMerge [
-      ''
-        Host github.com
-          Hostname github.com
-          IdentitiesOnly yes
-      ''
-      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-        ''
-          IdentityFile /home/${user}/.ssh/github
-        '')
-      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-        ''
-          IdentityFile /Users/${user}/.ssh/github
-        '')
-      ''
-        Host server
-          Hostname 143.198.86.252
-          IdentitiesOnly yes
-          IdentityFile /Users/atm/.ssh/digitalocean
-          PubKeyAuthentication yes
+    matchBlocks = {
+      "*" = {
+        # Default SSH config that applies to all hosts
+        # These are the default values from home-manager that we want to keep
+        extraOptions = {
+          AddKeysToAgent = "yes";
+        };
+      };
 
-        Host server-api
-          Hostname api.blahblah.sg
-          IdentitiesOnly yes
-          IdentityFile /Users/atm/.ssh/digitalocean
-          PubKeyAuthentication yes
-      ''
-    ];
+      "github.com" = {
+        hostname = "github.com";
+        identitiesOnly = true;
+        identityFile = lib.mkMerge [
+          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux "/home/${user}/.ssh/github")
+          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "/Users/${user}/.ssh/github")
+        ];
+      };
+
+      "server" = {
+        hostname = "143.198.86.252";
+        identitiesOnly = true;
+        identityFile = "/Users/atm/.ssh/digitalocean";
+        extraOptions = {
+          PubKeyAuthentication = "yes";
+        };
+      };
+
+      "server-api" = {
+        hostname = "api.blahblah.sg";
+        identitiesOnly = true;
+        identityFile = "/Users/atm/.ssh/digitalocean";
+        extraOptions = {
+          PubKeyAuthentication = "yes";
+        };
+      };
+    };
   };
 
   tmux = {
