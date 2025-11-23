@@ -104,7 +104,7 @@ in
   local.dock.entries = [
     { path = "/Applications/Firefox.app/"; }
     { path = "/Applications/Thunderbird.app/"; }
-    { path = "/Applications/Visual Studio Code.app/"; }
+    { path = "/Applications/Cursor.app/"; }
     { path = "/System/Applications/System Settings.app/"; }
     {
       path = "${config.users.users.${user}.home}/Downloads/";

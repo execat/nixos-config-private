@@ -239,22 +239,21 @@ let name = "Anuj More";
         ];
       };
 
-      "server" = {
-        hostname = "143.198.86.252";
+      "homelab" = {
+        hostname = "192.168.10.133";
         identitiesOnly = true;
-        identityFile = "/Users/atm/.ssh/digitalocean";
+        identityFile = "/Users/atm/.ssh/localhost";
         extraOptions = {
           PubKeyAuthentication = "yes";
         };
       };
 
-      "server-api" = {
-        hostname = "api.blahblah.sg";
+      "homelab2" = {
+        hostname = "10.42.0.235";
+        user = "atm";
         identitiesOnly = true;
-        identityFile = "/Users/atm/.ssh/digitalocean";
-        extraOptions = {
-          PubKeyAuthentication = "yes";
-        };
+        identityFile = "/Users/atm/.ssh/localhost";
+        proxyJump = "homelab";
       };
     };
   };
@@ -519,6 +518,11 @@ let name = "Anuj More";
       export HOMEBREW_NO_ANALYTICS=1
       export HOMEBREW_NO_ENV_HINTS=1
       export HOMEBREW_AUTO_UPDATE_SECS=345600
+
+      # Ruby/Gem configuration - use home directory instead of /nix/store
+      export GEM_HOME="$HOME/.gem"
+      export GEM_PATH="$HOME/.gem"
+      export PATH="$HOME/.gem/bin:$PATH"
 
       export EDITOR="vim"
       export VISUAL="vim"
