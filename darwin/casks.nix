@@ -23,6 +23,7 @@
 
   # Security
   "gpg-suite"
+  "yubikey-authenticator"
   # "yubico-yubikey-manager"
   # "yubico-yubikey-personalization-gui"
   # "yubico-yubikey-piv-manager"

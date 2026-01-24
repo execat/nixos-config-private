@@ -240,6 +240,7 @@ let name = "Anuj More";
       };
 
       "homelab" = {
+        user = "atm";
         hostname = "192.168.10.133";
         identitiesOnly = true;
         identityFile = "/Users/atm/.ssh/localhost";
