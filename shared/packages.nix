@@ -67,12 +67,12 @@ with pkgs; [
 
   # Languages: Practical: Ruby
   libyaml
-  ruby_3_4
-  rubyPackages_3_4.rest-client
-  rubyPackages_3_4.pry
-  rubyPackages_3_4.pry-byebug
-  rubyPackages_3_4.rubocop
-  rubyPackages_3_4.ruby-lsp
+  ruby_4_0
+  rubyPackages_4_0.rest-client
+  rubyPackages_4_0.pry
+  rubyPackages_4_0.pry-byebug
+  rubyPackages_4_0.rubocop
+  rubyPackages_4_0.ruby-lsp
 
   # Languages: Practical: Rust
   # rustup
