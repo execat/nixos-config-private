@@ -1,6 +1,4 @@
-{ agenix, config, pkgs, ... }:
-
-let user = "%USER%"; in
+{ agenix, config, pkgs, user, ... }:
 
 {
 

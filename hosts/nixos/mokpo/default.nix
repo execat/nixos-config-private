@@ -18,6 +18,12 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      # The starter template's desktop (bspwm + lightdm/slick + polybar + rofi + picom +
+      # dunst, home-manager-managed dotfiles). It touches no disks: the disko module
+      # (modules/nixos/disk-config.nix) is deliberately not part of it. Disable it by
+      # deleting this import if you only want the KDE/XFCE desktop below.
+      ../../../modules/nixos/desktop.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -64,8 +70,11 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment and XFCE
-  services.displayManager.sddm.enable = true;
+  # Enable the KDE Plasma Desktop Environment and XFCE, as extra sessions.
+  # SDDM is off: the display manager is lightdm + slick greeter, enabled by
+  # ../../../modules/nixos/desktop.nix, which is what makes bspwm the default session.
+  # Both Plasma and XFCE still show up in the greeter's session list.
+  services.displayManager.sddm.enable = false;
   services.desktopManager.plasma6.enable = true;
   services.xserver.desktopManager = {
     xterm.enable = false;

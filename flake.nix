@@ -30,7 +30,9 @@
   };
   outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko, agenix } @inputs:
     let
-      user = "%USER%";
+      user = "atm";
+      gitName = "Anuj More";
+      gitEmail = "anujmorex+nixos@gmail.com";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
       darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
       forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
@@ -71,6 +73,35 @@
         "check-keys" = mkApp "check-keys" system;
         "rollback" = mkApp "rollback" system;
       };
+
+      # The real laptop (see hosts/nixos/mokpo/README.md). It manages the actual LUKS
+      # containers and filesystems itself, so it takes neither the disko module nor the
+      # home-manager module: disko would replace its fileSystems with a placeholder disk.
+      mokpoSystem = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs // { inherit user gitName gitEmail inputs; };
+        modules = [ ./hosts/nixos/mokpo ];
+      };
+
+      # The upstream starter host (bspwm/lightdm/polybar + disko + home-manager, placeholder
+      # disk and user). It describes no real filesystem without disko, so it is only useful on
+      # a machine you are about to wipe and install with disko.
+      starterSystem = system: nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = inputs // { inherit user gitName gitEmail inputs; };
+        modules = [
+          disko.nixosModules.disko
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit user gitName gitEmail; };
+              users.${user} = import ./modules/nixos/home-manager.nix;
+            };
+          }
+          ./hosts/nixos
+        ];
+      };
     in
     {
       devShells = forAllSystems devShell;
@@ -79,7 +110,7 @@
       darwinConfigurations = nixpkgs.lib.genAttrs darwinSystems (system:
         darwin.lib.darwinSystem {
           inherit system;
-          specialArgs = inputs;
+          specialArgs = inputs // { inherit user gitName gitEmail inputs; };
           modules = [
             home-manager.darwinModules.home-manager
             nix-homebrew.darwinModules.nix-homebrew
@@ -101,30 +132,17 @@
         }
       );
 
-      nixosConfigurations = nixpkgs.lib.genAttrs linuxSystems (system: nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = inputs;
-        modules = [
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${user} = import ./modules/nixos/home-manager.nix;
-            };
-          }
-          ./hosts/nixos
-        ];
-     })
-     // {
-       # The actual machine, ported from /etc/nixos (see hosts/nixos/mokpo/README.md).
-       # Its modules manage the real LUKS/filesystems directly, so it takes neither the
-       # disko module nor the home-manager module.
-       mokpo = nixpkgs.lib.nixosSystem {
-         system = "x86_64-linux";
-         specialArgs = inputs;
-         modules = [ ./hosts/nixos/mokpo ];
-       };
-     };
+      nixosConfigurations = {
+        # `mokpo` and `x86_64-linux` are the same system: this laptop. The platform name is an
+        # alias so that a bare `nixos-rebuild switch --flake .` / `nix run .#build-switch` --
+        # which targets the platform host -- can only ever pick a configuration that boots
+        # this machine. Anything that reformats or wrong-disks it lives under other names.
+        mokpo = mokpoSystem;
+        x86_64-linux = mokpoSystem;
+
+        # The stock starter host, kept for fresh installs only (needs disko + a real disk).
+        aarch64-linux = starterSystem "aarch64-linux";
+        starter = starterSystem "x86_64-linux";
+      };
   };
 }

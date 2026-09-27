@@ -1,8 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, user, gitName, gitEmail, ... }:
 
-let name = "%NAME%";
-    user = "%USER%";
-    email = "%EMAIL%"; in
 {
   # Shared shell configuration
   zsh = {
@@ -71,8 +68,8 @@ let name = "%NAME%";
       enable = true;
     };
     settings = {
-      user.name = name;
-      user.email = email;
+      user.name = gitName;
+      user.email = gitEmail;
       init.defaultBranch = "main";
       core = {
 	    editor = "vim";

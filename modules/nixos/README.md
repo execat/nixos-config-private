@@ -3,12 +3,27 @@
 .
 ├── config             # Config files not written in Nix
 ├── default.nix        # Defines module, system-level config,
+├── desktop.nix        # The starter desktop (bspwm/lightdm/polybar/rofi/picom), with no
+│                      # disk/identity/boot settings: importable by a host on a real,
+│                      # already-partitioned disk (see hosts/nixos/mokpo)
 ├── disk-config.nix    # Disks, partitions, and filesystems
 ├── files.nix          # Non-Nix, static configuration files (now immutable!)
 ├── home-manager.nix   # Defines user programs
 ├── packages.nix       # List of packages to install for NixOS
 ├── secrets.nix        # Age-encrypted secrets with agenix
 ```
+
+## Hosts in this repo
+
+`hosts/nixos/default.nix` (this directory's consumer) is the stock starter host: disko +
+home-manager, bspwm/polybar, placeholder disk and user, wired to `nixosConfigurations.starter`
+and `nixosConfigurations.aarch64-linux`. It has no real filesystem of its own, so it is only for
+machines you are about to wipe and install with disko.
+
+`hosts/nixos/mokpo` is the real laptop, ported from `/etc/nixos`. It owns that machine's
+LUKS/filesystems through its own `hardware-configuration.nix` and is wired to `mokpo` and to
+`x86_64-linux` (the platform alias), so a bare `nixos-rebuild switch --flake .` can only target
+something that boots. See `hosts/nixos/mokpo/README.md`.
 
 ## Multiple Host Support
 
