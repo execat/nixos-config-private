@@ -5,7 +5,7 @@
 ├── default.nix        # Defines module, system-level config,
 ├── desktop.nix        # The starter desktop (bspwm/lightdm/polybar/rofi/picom), with no
 │                      # disk/identity/boot settings: importable by a host on a real,
-│                      # already-partitioned disk (see hosts/nixos/mokpo)
+│                      # already-partitioned disk (see hosts/nixos/mokpo, DESKTOP.md)
 ├── disk-config.nix    # Disks, partitions, and filesystems
 ├── files.nix          # Non-Nix, static configuration files (now immutable!)
 ├── home-manager.nix   # Defines user programs
@@ -23,7 +23,12 @@ machines you are about to wipe and install with disko.
 `hosts/nixos/mokpo` is the real laptop, ported from `/etc/nixos`. It owns that machine's
 LUKS/filesystems through its own `hardware-configuration.nix` and is wired to `mokpo` and to
 `x86_64-linux` (the platform alias), so a bare `nixos-rebuild switch --flake .` can only target
-something that boots. See `hosts/nixos/mokpo/README.md`.
+something that boots. See `hosts/nixos/mokpo/README.md` for the disks, deploy commands and the
+recovery ladder.
+
+What that host imports from here — the ported desktop, sessions and login, the dotfiles
+home-manager takes over, the backup policy for the GTK files Plasma also writes, and the rough
+edges inherited from the template — is in `DESKTOP.md`.
 
 ## Multiple Host Support
 

@@ -57,8 +57,18 @@ in
   # ... would be clobbered" and the rest of the user environment never gets deployed. With it,
   # home-manager renames the existing file to `<file>.backup` and carries on. Drop the line if
   # you would rather the switch fail loudly than move files.
+  #
+  # overwriteBackup: that backup name is one-shot. Once `.gtkrc-2.0.backup` exists, the *next*
+  # time anything rewrites the file (Plasma again on the next login) activation dies in its
+  # pre-check with
+  #   Existing file '/home/atm/.gtkrc-2.0.backup' would be clobbered by backing up '/home/atm/.gtkrc-2.0'
+  # and the whole switch exits 4, even though the system config itself activated fine. With this
+  # on, home-manager deletes the stale `<file>.backup` and moves the new one in, so repeated
+  # collisions are harmless. Trade-off: only the latest backup survives (fine at this scale —
+  # the file it replaces is a Plasma default, not user data).
   home-manager = {
     backupFileExtension = "backup";
+    overwriteBackup = true;
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit user gitName gitEmail; };

@@ -35,6 +35,7 @@ in
 
   # Use a dark theme
   gtk = {
+    gtk4.theme = null;        # Disabling old behavior
     enable = true;
     iconTheme = {
       name = "Adwaita-dark";
@@ -111,7 +112,19 @@ in
     };
   };
 
-  programs = shared-programs // { gpg.enable = true; };
+  # gpg.enable keeps gpg around for reading/verifying keys, but commit signing stays OFF on
+  # NixOS. The signing key (997C58F864FFEBB4) only exists in the Mac's keyring: this box has no
+  # secret key (and no pinentry either), so `git commit` died with
+  #   error: gpg failed to sign the data: gpg: skipped "...": No secret key
+  #   fatal: failed to write commit object
+  # Re-enable per host (commit.gpgsign = true) once a key is imported and gpg-agent has a
+  # pinentry to prompt with.
+  programs = shared-programs // {
+    gpg.enable = true;
+    git = shared-programs.git // {
+      settings = shared-programs.git.settings // { commit.gpgsign = false; };
+    };
+  };
 
   # polybar belongs to the bspwm session only. home-manager's polybar module hardcodes
   # `Install.WantedBy = [ "tray.target" ]`, and tray.target is pulled into *every* graphical

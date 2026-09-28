@@ -22,7 +22,10 @@ directory is a drop-in replacement for the two files that were living in `/etc/n
 | `nvme0n1p3` | 17 GiB | LUKS `a7d4c564-9abe-4be7-946e-2ddbd385338e` → swap |
 
 Bootloader is systemd-boot on the ESP. Both LUKS containers are opened in initrd
-(`boot.initrd.luks.devices`), which is why those two UUIDs must stay correct.
+(`boot.initrd.luks.devices`), which is why those two UUIDs must stay correct. This host takes its
+filesystems from `hardware-configuration.nix` and must never import
+`modules/nixos/disk-config.nix` (disko): that would replace them with the template's placeholder
+disk device and the machine would not boot.
 
 ## Deploy
 
@@ -45,103 +48,12 @@ sudo nixos-rebuild boot --flake .#mokpo
 Flakes only see files git knows about: `git add` any file you add or edit before switching, or
 the build silently uses the last staged/committed version.
 
-## Desktop: the starter template's bspwm session
+## Desktop, sessions and dotfiles
 
-This host imports `modules/nixos/desktop.nix`, which is the starter template's desktop
-(`hosts/nixos/default.nix`) with everything that owns hardware or machine identity removed,
-so it can live on a disk that is already partitioned:
-
-| ported | dropped |
-| --- | --- |
-| lightdm + slick greeter, bspwm as default session | `modules/nixos/disk-config.nix` (disko) |
-| polybar, rofi, picom, dunst, gvfs/tumbler, libinput | `networking.hostName`, `time.timeZone` |
-| home-manager: `modules/nixos/{home-manager,files,packages}.nix` + `modules/shared/*` | `system.stateVersion`, kernel/bootloader settings |
-| fonts, `ctrl:nocaps` xkb, NOPASSWD reboot | agenix (`modules/nixos/secrets.nix`) and the template author's SSH keys |
-| the local `overlays/` (feather-font, used by the polybar config) | the fetched emacs overlay (nothing here uses it, and it is an impure fetch at eval time) |
-
-`programs.gnupg.agent.enable`, which the template sets, is left out on purpose: with both
-Plasma 6 and XFCE enabled in `default.nix`, current nixpkgs has Plasma and XFCE each
-`mkDefault` `programs.gnupg.agent.pinentryPackage`, and the option then fails with
-"defined multiple times while it's expected to be unique". Pin it with
-`pinentryPackage = lib.mkForce pkgs.pinentry-qt;` if you want it back.
-
-`user`, `gitName`, `gitEmail` (the values `apps/*/apply` used to sed into files as
-%USER%/%NAME%/%EMAIL%) now come from `specialArgs` in `flake.nix`. Home-manager reserves
-the argument name `name` for the key in `home-manager.users`, which is why the git
-identity is called `gitName`/`gitEmail`.
-
-### Sessions and login
-
-`services.displayManager.sddm.enable` is `false` here: lightdm (from `desktop.nix`) owns the
-display-manager slot and bspwm is `services.displayManager.defaultSession`. Plasma 6 and XFCE
-are still enabled in `default.nix`, so they remain selectable in the greeter.
-
-`switch-to-configuration` does not restart a running display manager, so after the switch that
-changes it the machine is still being served by whatever was running (SDDM, in this case) and
-your current session keeps working. Log out and back in only after the new greeter is up:
-`sudo systemctl restart display-manager.service` or a reboot gives you lightdm + slick with
-bspwm preselected.
-
-### Dotfiles home-manager will take over
-
-The first switch writes these as read-only symlinks under `/home/atm`. Home-manager refuses
-to clobber anything that already exists, so `desktop.nix` sets
-`home-manager.backupFileExtension = "backup"`: an existing file is renamed to
-`<name>.backup` (left in place) and the symlink goes in.
-
-On this machine that mattered — four of these paths already existed, written by Plasma's GTK
-integration rather than by hand:
-
-    ~/.gtkrc-2.0  ~/.config/gtk-3.0/settings.ini  ~/.config/gtk-4.0/settings.ini  ~/.config/gtk-4.0/gtk.css
-
-The first switch (generation 24) failed with `Existing file '/home/atm/.config/gtk-4.0/settings.ini'
-would be clobbered` and `home-manager-atm.service` aborted, which leaves the *entire* user
-environment undeployed (no bspwmrc/sxhkdrc/polybar/zsh) while the system side switches fine.
-With `backupFileExtension` set, generation 25 moved those four aside and deployed everything.
-Plasma will keep trying to write those GTK files at login; HM's are symlinks into the store, so
-Plasma's writes fail (harmlessly, logged) and GTK apps in Plasma get HM's Adwaita-dark theme.
-
-    ~/.zshrc ~/.zshenv ~/.zprofile ~/.zsh/ ~/.gtkrc-2.0 ~/.emacs.d/init.el
-    ~/.gnupg/gpg.conf ~/.ssh/config
-    ~/.config/{alacritty,bspwm,dunst,fontconfig,git,gtk-3.0,gtk-4.0,polybar,rofi,sxhkd,tmux,udiskie}
-
-(That list is `nix eval .#nixosConfigurations.mokpo.config.home-manager.users.atm.home.file
---apply builtins.attrNames`. The polybar, dunst, udiskie, xautolock and xss-lock user
-services are written with it.)
-
-Note that home-manager's `programs.git` writes `~/.config/git/config` (with
-`commit.gpgsign = true` from the template, which needs a signing key to keep working),
-and `modules/nixos/files.nix` writes the bspwm/sxhkd/polybar/rofi files under
-`/home/${user}/.config` — it used to derive that from `$HOME` at evaluation time, which
-silently wrote the wrong directory when the switch ran as root.
-
-Keyboard hotkeys for the bspwm session are listed in `modules/nixos/README.md`.
-
-### Rough edges inherited from the template
-
-* polybar was drawn in *every* graphical session, which is why the bspwm bar showed up over
-  KDE and XFCE: home-manager's polybar module hardcodes `Install.WantedBy = [ "tray.target" ]`
-  and `tray.target` is pulled into Plasma/XFCE sessions too. Fixed in
-  `modules/nixos/home-manager.nix` with
-  `systemd.user.services.polybar.Install.WantedBy = lib.mkForce [ ];` — `bspwmrc` starts it
-  explicitly (`systemctl --user start polybar`), which works whether or not the unit is
-  enabled. `udiskie`, `xautolock-session` and `xss-lock` are still session-scoped to every
-  graphical session (they run under Plasma right now); gate them the same way if you want
-  them bspwm-only. `dunst` is D-Bus activated and Plasma owns the notifications name, so it
-  stays out of the way there.
-* `~/.config/bspwm/bspwmrc` finishes by waiting for an emacs daemon that nothing starts
-  (`emacsclient -a "" -e '(progn)'` in a `while` loop) — the template's emacs service is
-  commented out. bspwm, sxhkd and polybar are already running by then, so it only spins;
-  enable home-manager's `services.emacs.enable = true` or delete that block to stop it.
-* Rebuild warnings: `programs.ssh.matchBlocks` is deprecated in current home-manager (use
-  `programs.ssh.settings`), and the template's `home.stateVersion = "21.05"` triggers the
-  `gtk.gtk4.theme` legacy-default warning. Both live in `modules/{shared,nixos}/home-manager.nix`,
-  which the darwin host shares.
-* `programs.git` sets `commit.gpgsign = true`, so commits fail until a signing key exists
-  (or you drop that line).
-* `modules/shared/packages.nix` is the template's big per-user package set (google-chrome,
-  terraform, awscli2, go, rustc, openjdk, python3, nodejs_24, docker-compose, …). It is why
-  the first switch pulls several GB; trim that file if you don't want the whole set.
+`default.nix` imports `modules/nixos/desktop.nix` (the starter template's bspwm/lightdm/polybar
+session) and home-manager owns `/home/atm`. What was ported from the template and what was left
+behind, how login behaves after the display-manager change, the backup policy for the files
+Plasma also writes, and the rough edges to expect: `modules/nixos/DESKTOP.md`.
 
 ## If a switch leaves the machine unbootable
 
@@ -160,11 +72,3 @@ there is always something working to fall back to:
 The ESP holds each generation's kernel/initrd copy under `/boot/EFI/nixos` (154 MiB used,
 869 MiB free); adding `boot.loader.systemd-boot.configurationLimit = 42;` bounds that growth if
 it ever gets tight.
-
-## Do not import `modules/nixos/disk-config.nix` here
-
-The shared template host (`hosts/nixos/default.nix`) gets its disks from disko. disko's NixOS
-module turns `disko.devices` into `fileSystems`/`swapDevices`, so importing it for this host
-would replace the real LUKS/ext4/vfat definitions with the template's placeholder disk device
-and the machine would not boot. This host describes its disks with
-`hardware-configuration.nix` instead.
