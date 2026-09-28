@@ -89,6 +89,25 @@
     xfce.enable = true;
   };
 
+  # Keep Baloo's content extractor independent of any X/Wayland display.
+  #
+  # baloo_file_extractor is a Qt GUI application (it constructs a QGuiApplication), so Qt
+  # loads a platform plugin for it, and Qt prefers xcb whenever DISPLAY is set. When the
+  # baloo_file daemon outlives the session it was started in -- e.g. an X11/XFCE session
+  # whose X server dies and whose logout never finishes, leaving the daemon reparented to
+  # PID 1 still holding DISPLAY=:0.0 -- every extractor it spawns fails with "could not
+  # connect to display :0.0", aborts on SIGABRT, and drkonqi raises a "Service Crash"
+  # dialog for each one. The extractor renders nothing, so pin it to the offscreen platform
+  # and it no longer cares about DISPLAY at all.
+  #
+  # kde-baloo.service comes from the baloo package (share/systemd/user), not from a NixOS
+  # unit, so this has to be a drop-in: a full unit here would shadow the vendor unit in
+  # /etc/systemd/user and the daemon would lose its ExecStart= and BusName=.
+  systemd.user.services.kde-baloo = {
+    overrideStrategy = "asDropin";
+    environment.QT_QPA_PLATFORM = "offscreen";
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
