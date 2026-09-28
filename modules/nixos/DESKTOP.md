@@ -52,6 +52,9 @@ are written with it.)
 
 Two notes on how they are produced:
 
+* `~/.ssh/id_github` is not one of them: it is an agenix secret (`age.secrets."github-ssh-key"` in
+  `hosts/nixos/mokpo/secrets.nix`), decrypted at activation because the ssh settings below point
+  `IdentityFile` at it. See `secrets/README.md`.
 * `modules/nixos/files.nix` writes the bspwm/sxhkd/polybar/rofi files under `/home/${user}/.config`
   — it used to derive that from `$HOME` at evaluation time, which silently wrote the wrong
   directory when the switch ran as root.

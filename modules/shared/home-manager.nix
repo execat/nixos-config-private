@@ -1,5 +1,13 @@
 { config, pkgs, lib, user, gitName, gitEmail, ... }:
 
+let
+  # This module is shared by the NixOS and the darwin host, so a few paths differ per
+  # platform. Keep them in `let` bindings: `lib.optionals` is the only safe way to vary a
+  # list-valued option per platform (see the note in the `ssh` block below).
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
+in
+
 {
   # Shared shell configuration
   zsh = {
@@ -260,30 +268,25 @@
   ssh = {
     enable = true;
     enableDefaultConfig = false;
-    includes = [
-      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-        "/home/${user}/.ssh/config_external"
-      )
-      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-        "/Users/${user}/.ssh/config_external"
-      )
-    ];
-    matchBlocks = {
+
+    # `programs.ssh.settings` is a freeform (`types.anything`) attribute, so a `lib.mkIf`
+    # element inside one of its list values stays an unresolved attrset and the config
+    # fails to render with "cannot coerce a set to a string". Per-platform values in these
+    # lists must therefore be built with `lib.optionals` (the old `matchBlocks` typed
+    # `identityFile` as `listOf str`, which merged `mkIf` element-wise, so the idiom used
+    # to work there).
+    includes = lib.optionals isLinux [ "/home/${user}/.ssh/config_external" ]
+      ++ lib.optionals isDarwin [ "/Users/${user}/.ssh/config_external" ];
+    settings = {
       "*" = {
         # Set the default values we want to keep
-        sendEnv = [ "LANG" "LC_*" ];
-        hashKnownHosts = true;
+        SendEnv = [ "LANG" "LC_*" ];
+        HashKnownHosts = true;
       };
       "github.com" = {
-        identitiesOnly = true;
-        identityFile = [
-          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
-            "/home/${user}/.ssh/id_github"
-          )
-          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-            "/Users/${user}/.ssh/id_github"
-          )
-        ];
+        IdentitiesOnly = true;
+        IdentityFile = lib.optionals isLinux [ "/home/${user}/.ssh/id_github" ]
+          ++ lib.optionals isDarwin [ "/Users/${user}/.ssh/id_github" ];
       };
     };
   };

@@ -48,6 +48,19 @@ sudo nixos-rebuild boot --flake .#mokpo
 Flakes only see files git knows about: `git add` any file you add or edit before switching, or
 the build silently uses the last staged/committed version.
 
+## Secrets
+
+`secrets.nix` in this directory wires [agenix](https://github.com/ryantm/agenix) in for this host.
+The encrypted blobs live in `secrets/` at the repo root, recipients are declared in
+`agenix-rules.nix`, and decryption uses this machine's own SSH host keys at activation — so there
+is no separate age key to generate, copy onto the machine or keep anywhere. The first secret is the
+GitHub SSH key at `~/.ssh/id_github`, which is the path the ssh settings already point
+`IdentityFile` at. Editing them needs no extra tooling beyond the `agenix` CLI that
+`default.nix` puts in `environment.systemPackages`; the workflow, the reinstall caveat and
+how to add one: `secrets/README.md`. The host-specific side of it — what the identity is, which
+secret lands where, and the plan for moving the blobs to the private `execat/nix-secrets` repo
+together with the keys that needs: `SECRETS.md`.
+
 ## Desktop, sessions and dotfiles
 
 `default.nix` imports `modules/nixos/desktop.nix` (the starter template's bspwm/lightdm/polybar

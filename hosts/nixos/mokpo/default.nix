@@ -11,13 +11,21 @@
 # Deploy:
 #   sudo nixos-rebuild switch --flake .#mokpo
 #   nix run .#build-switch -- --host mokpo
+#
+# Secrets: ./secrets.nix (agenix), encrypted blobs in ../../../secrets/, recipients in
+# ../../../agenix-rules.nix, workflow in ../../../secrets/README.md.
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      # agenix: secrets are decrypted at activation with this host's own OpenSSH host keys.
+      # See ./secrets.nix, ../../../agenix-rules.nix and ../../../secrets/README.md.
+      inputs.agenix.nixosModules.default
+      ./secrets.nix
 
       # The starter template's desktop (bspwm + lightdm/slick + polybar + rofi + picom +
       # dunst, home-manager-managed dotfiles). It touches no disks: the disko module
@@ -144,6 +152,10 @@
     tokei
     sqlitebrowser
     vlc
+
+    # The agenix CLI, for editing the secrets in ../../../secrets/ (`agenix -e`). The
+    # activation-time decryption in ./secrets.nix does not need it. As on the starter host.
+    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
