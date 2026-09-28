@@ -113,4 +113,12 @@ in
 
   programs = shared-programs // { gpg.enable = true; };
 
+  # polybar belongs to the bspwm session only. home-manager's polybar module hardcodes
+  # `Install.WantedBy = [ "tray.target" ]`, and tray.target is pulled into *every* graphical
+  # session, so the bar was drawn over Plasma and XFCE too. bspwmrc starts it explicitly
+  # (`systemctl --user start polybar`), which works whether or not the unit is enabled, so
+  # drop the session-wide autostart. Same story for the other session-scoped helpers below
+  # (udiskie, screen-locker) if you only want them under bspwm.
+  systemd.user.services.polybar.Install.WantedBy = lib.mkForce [ ];
+
 }

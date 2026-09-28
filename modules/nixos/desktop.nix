@@ -50,7 +50,15 @@ in
   };
 
   # home-manager owns the desktop dotfiles for this user.
+  #
+  # backupFileExtension: Plasma writes ~/.gtkrc-2.0 and ~/.config/gtk-{3,4}.0/{settings.ini,gtk.css}
+  # itself (breeze cursors, set on first login), and home-manager's gtk module wants those same
+  # paths. Without this, `home-manager-atm.service` fails on activation with "Existing file
+  # ... would be clobbered" and the rest of the user environment never gets deployed. With it,
+  # home-manager renames the existing file to `<file>.backup` and carries on. Drop the line if
+  # you would rather the switch fail loudly than move files.
   home-manager = {
+    backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit user gitName gitEmail; };

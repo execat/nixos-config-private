@@ -72,14 +72,34 @@ identity is called `gitName`/`gitEmail`.
 
 ### Sessions and login
 
-`services.displayManager.sddm.enable` is `false` here: lightdm (from `desktop.nix`) owns
-the display-manager slot and bspwm is `services.displayManager.defaultSession`. Plasma 6
-and XFCE are still enabled in `default.nix`, so they remain selectable in the greeter.
+`services.displayManager.sddm.enable` is `false` here: lightdm (from `desktop.nix`) owns the
+display-manager slot and bspwm is `services.displayManager.defaultSession`. Plasma 6 and XFCE
+are still enabled in `default.nix`, so they remain selectable in the greeter.
+
+`switch-to-configuration` does not restart a running display manager, so after the switch that
+changes it the machine is still being served by whatever was running (SDDM, in this case) and
+your current session keeps working. Log out and back in only after the new greeter is up:
+`sudo systemctl restart display-manager.service` or a reboot gives you lightdm + slick with
+bspwm preselected.
 
 ### Dotfiles home-manager will take over
 
-The first switch writes these as read-only symlinks under `/home/atm`; move any real file
-of the same name aside first (home-manager refuses to clobber, with a `.backup` suffix):
+The first switch writes these as read-only symlinks under `/home/atm`. Home-manager refuses
+to clobber anything that already exists, so `desktop.nix` sets
+`home-manager.backupFileExtension = "backup"`: an existing file is renamed to
+`<name>.backup` (left in place) and the symlink goes in.
+
+On this machine that mattered — four of these paths already existed, written by Plasma's GTK
+integration rather than by hand:
+
+    ~/.gtkrc-2.0  ~/.config/gtk-3.0/settings.ini  ~/.config/gtk-4.0/settings.ini  ~/.config/gtk-4.0/gtk.css
+
+The first switch (generation 24) failed with `Existing file '/home/atm/.config/gtk-4.0/settings.ini'
+would be clobbered` and `home-manager-atm.service` aborted, which leaves the *entire* user
+environment undeployed (no bspwmrc/sxhkdrc/polybar/zsh) while the system side switches fine.
+With `backupFileExtension` set, generation 25 moved those four aside and deployed everything.
+Plasma will keep trying to write those GTK files at login; HM's are symlinks into the store, so
+Plasma's writes fail (harmlessly, logged) and GTK apps in Plasma get HM's Adwaita-dark theme.
 
     ~/.zshrc ~/.zshenv ~/.zprofile ~/.zsh/ ~/.gtkrc-2.0 ~/.emacs.d/init.el
     ~/.gnupg/gpg.conf ~/.ssh/config
@@ -99,6 +119,16 @@ Keyboard hotkeys for the bspwm session are listed in `modules/nixos/README.md`.
 
 ### Rough edges inherited from the template
 
+* polybar was drawn in *every* graphical session, which is why the bspwm bar showed up over
+  KDE and XFCE: home-manager's polybar module hardcodes `Install.WantedBy = [ "tray.target" ]`
+  and `tray.target` is pulled into Plasma/XFCE sessions too. Fixed in
+  `modules/nixos/home-manager.nix` with
+  `systemd.user.services.polybar.Install.WantedBy = lib.mkForce [ ];` — `bspwmrc` starts it
+  explicitly (`systemctl --user start polybar`), which works whether or not the unit is
+  enabled. `udiskie`, `xautolock-session` and `xss-lock` are still session-scoped to every
+  graphical session (they run under Plasma right now); gate them the same way if you want
+  them bspwm-only. `dunst` is D-Bus activated and Plasma owns the notifications name, so it
+  stays out of the way there.
 * `~/.config/bspwm/bspwmrc` finishes by waiting for an emacs daemon that nothing starts
   (`emacsclient -a "" -e '(progn)'` in a `while` loop) — the template's emacs service is
   commented out. bspwm, sxhkd and polybar are already running by then, so it only spins;
