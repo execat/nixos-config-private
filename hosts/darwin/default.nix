@@ -3,7 +3,6 @@
 {
 
   imports = [
-    ../../modules/darwin/secrets.nix
     ../../modules/darwin/home-manager.nix
     ../../modules/shared
      agenix.darwinModules.default

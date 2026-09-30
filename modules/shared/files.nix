@@ -14,13 +14,8 @@
     text = builtins.readFile ../shared/config/emacs/init.el;
   };
 
-  # IMPORTANT: The Emacs configuration expects a config.org file at ~/.config/emacs/config.org
-  # You can either:
-  # 1. Copy the provided config.org to ~/.config/emacs/config.org
-  # 2. Set EMACS_CONFIG_ORG environment variable to point to your config.org location
-  # 3. Uncomment below to have Nix manage the file:
-  #
-  # ".config/emacs/config.org" = {
-  #   text = builtins.readFile ../shared/config/emacs/config.org;
-  # };
+  # init.el reads ~/.config/emacs/config.org (or $EMACS_CONFIG_ORG) and tangles it; with no
+  # such file it downloads the upstream template config to ~/.emacs.d/default-config.org and
+  # tangles that instead. This repo no longer ships a config.org: add a
+  # ".config/emacs/config.org" entry here if you want Nix to manage one.
 }

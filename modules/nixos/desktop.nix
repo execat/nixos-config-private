@@ -7,7 +7,7 @@
 #
 #   * no `modules/nixos/disk-config.nix` (disko would replace this host's fileSystems)
 #   * no hostname, time zone, stateVersion, kernel or bootloader settings
-#   * no agenix / `modules/nixos/secrets.nix`
+#   * no agenix / host secrets
 #   * no SSH `authorizedKeys` from the template author
 #
 # The UI itself is the same code the starter host uses:

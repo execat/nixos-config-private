@@ -137,12 +137,12 @@ host key, let alone authenticate. The same command as `atm` succeeds. Three ways
 | read-only deploy key (ed25519) | letting root fetch the private repo during a plain `sudo nixos-rebuild switch` | this repo → agenix → `/root/.ssh/nix-secrets-deploy` | nix-secrets → Settings → Deploy keys (leave write access **off**) |
 | recovery age identity | decrypting / rotating after this laptop dies — the stand-in for keys on another machine | offline: paper, USB stick or password manager, **not** on mokpo | recipients in `agenix-rules.nix` for every secret |
 
-Do **not** produce the template's per-user `~/.ssh/id_ed25519`. That is what `create-keys` /
-`copy-keys` / `check-keys` in the starter repo were for (the stub `modules/nixos/secrets.nix` still
-lists it as `age.identityPaths`), and it is exactly the key you would then have to copy between
-machines and keep backed up. This host decrypts with its own host keys, so there is nothing to
-create, copy or lose. Those three apps are declared in `flake.nix` with no scripts behind them —
-ignore them until something needs a *user*-owned identity.
+Do **not** produce the template's per-user `~/.ssh/id_ed25519`. That is what the starter
+template's `create-keys` / `copy-keys` / `check-keys` apps were for, and what its
+`modules/{nixos,darwin}/secrets.nix` stubs listed as `age.identityPaths` — all of them have been
+removed from this repo, so nothing here asks for that key. It is exactly the key you would
+otherwise have to copy between machines and keep backed up; this host decrypts with its own host
+keys, so there is nothing to create, copy or lose.
 
 The recovery identity matters more than it looks: with only the two host keys as recipients, a dead
 laptop means the ciphertext is unrecoverable. `/etc/ssh/ssh_host_*` are not backed up anywhere.

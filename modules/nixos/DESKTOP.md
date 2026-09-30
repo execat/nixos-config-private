@@ -10,7 +10,7 @@ README for the disks and the deploy commands.
 | lightdm + slick greeter, bspwm as default session | `modules/nixos/disk-config.nix` (disko) |
 | polybar, rofi, picom, dunst, gvfs/tumbler, libinput | `networking.hostName`, `time.timeZone` |
 | home-manager: `modules/nixos/{home-manager,files,packages}.nix` + `modules/shared/*` | `system.stateVersion`, kernel/bootloader settings |
-| fonts, `ctrl:nocaps` xkb, NOPASSWD reboot | agenix (`modules/nixos/secrets.nix`) and the template author's SSH keys |
+| fonts, `ctrl:nocaps` xkb, NOPASSWD reboot | agenix and the template author's SSH keys |
 | the local `overlays/` (feather-font, used by the polybar config) | the fetched emacs overlay (nothing here uses it, and it is an impure fetch at eval time) |
 
 `programs.gnupg.agent.enable`, which the template sets, is left out on purpose: with both
