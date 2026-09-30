@@ -163,6 +163,8 @@
     file
     coreutils
     transmission_4-gtk
+    onlyoffice-desktopeditors
+    libreoffice-qt
     direnv
     zellij
     ghostty
