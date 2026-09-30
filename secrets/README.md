@@ -8,6 +8,10 @@ what, and where the plaintext lands, is in that host's `secrets.nix`.
 | --- | --- | --- | --- |
 | `github-ssh-key.age` | `/home/atm/.ssh/id_github` | mokpo's SSH host keys | `hosts/nixos/mokpo/secrets.nix` |
 
+No macOS host consumes anything here: neither darwin configuration declares an `age.secrets`
+(the template's stub `modules/darwin/secrets.nix` was removed), so this directory and
+`agenix-rules.nix` are mokpo-only today.
+
 ## The identity is the host key
 
 On NixOS, agenix decrypts with the host's own OpenSSH host keys unless told otherwise, and

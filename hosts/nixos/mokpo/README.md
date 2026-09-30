@@ -45,6 +45,11 @@ nix run .#build-switch -- --host mokpo
 sudo nixos-rebuild boot --flake .#mokpo
 ```
 
+The wrapper app is currently dead on arrival: every `apps/<system>/<name>` script is committed
+non-executable, so `nix run .#build-switch` fails with `Permission denied` before running anything
+(see the top-level `README.md`). Use `bash apps/x86_64-linux/build-switch --host mokpo`, or
+`chmod +x apps/*/*` once.
+
 Flakes only see files git knows about: `git add` any file you add or edit before switching, or
 the build silently uses the last staged/committed version.
 

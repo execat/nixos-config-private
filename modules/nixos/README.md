@@ -2,16 +2,17 @@
 ```
 .
 ├── config             # Config files not written in Nix
-├── default.nix        # Defines module, system-level config,
 ├── desktop.nix        # The starter desktop (bspwm/lightdm/polybar/rofi/picom), with no
 │                      # disk/identity/boot settings: importable by a host on a real,
 │                      # already-partitioned disk (see hosts/nixos/mokpo, DESKTOP.md)
-├── disk-config.nix    # Disks, partitions, and filesystems
+├── disk-config.nix    # Disks, partitions, and filesystems (disko; the starter host only)
 ├── files.nix          # Non-Nix, static configuration files (now immutable!)
 ├── home-manager.nix   # Defines user programs
 ├── packages.nix       # List of packages to install for NixOS
-├── secrets.nix        # Age-encrypted secrets with agenix
 ```
+
+Nothing here is a `default.nix`: this directory is only ever reached by explicit path from a host
+(`../../../modules/nixos/desktop.nix`, `./home-manager.nix`, …).
 
 ## Hosts in this repo
 
@@ -47,7 +48,7 @@ nixosConfigurations =
   nixpkgs.lib.genAttrs linuxSystems (system:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = inputs // { inherit user; };
+      specialArgs = inputs // { inherit user gitName gitEmail inputs; };
       modules = [
         # existing modules...
         ./hosts/nixos
@@ -59,7 +60,7 @@ nixosConfigurations =
   {
     hostname = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = inputs // { inherit user; };
+      specialArgs = inputs // { inherit user gitName gitEmail inputs; };
       modules = [
         # Same base modules...
         ./hosts/nixos/hostname  # Host-specific config
@@ -95,7 +96,12 @@ nix run .#build-switch -- --host hostname
 
 The `--host` flag allows targeting specific named hosts instead of the default platform-based configuration, enabling per-host customization while sharing the base configuration.
 
-**Example:** Check out the `garfield` host in the [main repository](https://github.com/dustinlyones/nixos-config) to see how it differs from the default configuration with Nvidia graphics, different packages, simplified services, etc.
+(The flake apps are declared, but every `apps/<system>/<name>` script is committed non-executable, so
+`nix run .#build-switch` currently dies with `Permission denied` before running anything — use
+`bash apps/x86_64-linux/build-switch --host hostname`, or `chmod +x apps/*/*` once. See the note in
+the top-level `README.md`.)
+
+**Example:** Check out the `garfield` host in the [main repository](https://github.com/dustinlyons/nixos-config) to see how it differs from the default configuration with Nvidia graphics, different packages, simplified services, etc.
 
 ## Essential Hotkeys
 
