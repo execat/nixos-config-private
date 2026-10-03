@@ -172,6 +172,8 @@
     tree
     tokei
     sqlitebrowser
+    yt-dlp
+    ffmpeg
     vlc
 
     # The agenix CLI, for editing the secrets in ../../../secrets/ (`agenix -e`). The

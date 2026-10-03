@@ -26,7 +26,12 @@ in
           file = "p10k.zsh";
       }
     ];
-    initContent = lib.mkBefore ''
+    # Extra shell setup lives in ~/shrc: an unmanaged, per-machine file, so host-local
+    # aliases do not need a rebuild of this module. It is sourced last (mkAfter = order
+    # 1500) so it can override anything set above; the -f guard because ~/shrc is optional
+    # and this module is shared with hosts that do not have one.
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
       if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
         . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
@@ -66,7 +71,15 @@ in
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
-    '';
+      '')
+
+      # Sourced last, so ~/shrc wins over everything above.
+      (lib.mkAfter ''
+        if [[ -f "$HOME/shrc" ]]; then
+          source "$HOME/shrc"
+        fi
+      '')
+    ];
   };
 
   git = {

@@ -24,3 +24,16 @@ instead.
 That is an impure eval-time fetch, and only the darwin host needs it: `emacs-unstable`, which
 `hosts/darwin/default.nix` installs, does not exist in this flake's nixpkgs. No NixOS host names a
 package from it.
+
+## Shell customisation: `~/shrc`
+
+`home-manager.nix` is what generates `~/.zshrc`, so it is not the place for per-machine extras.
+Its `zsh.initContent` ends with (order 1500, i.e. last)
+
+```sh
+if [[ -f "$HOME/shrc" ]]; then source "$HOME/shrc"; fi
+```
+
+so aliases, functions and PATH additions go in `~/shrc`: an unmanaged, optional file (`rm ~/shrc`
+and the next shell still works), editable without a rebuild. Being sourced last, it wins over
+what the module sets — including `EDITOR`, which the module points at `emacsclient`.
